@@ -1,9 +1,8 @@
-<<<<<<< Updated upstream
-import { ChevronLeft } from "@mui/icons-material";
+import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
 import React from "react";
 import { assets } from "../../../../assets";
 
-const MusicLinks = () => {
+const LoginPage2 = () => {
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 px-10 pb-10">
@@ -35,25 +34,37 @@ const MusicLinks = () => {
       </section>
       <section
         className="hidden md:flex justify-center h-screen overflow-hidden"
-        // style={ { background: `url(${assets.auth.registration})no-repeat center center/cover`, } }
+        style={{
+          background: `url(${assets.auth.registration})no-repeat center center/cover`,
+        }}
       >
-        <img
-          src={assets.auth.registration}
-          alt="Img Not Found"
-          className="w-full"
-        />
+        <div className="self-end max-w-xs mx-auto my-8 rounded p-4 backdrop-blur-xl">
+          <p className="mb-5">
+            "Music has been used for therapeutic purposes in a variety of
+            settings"
+          </p>
+          <div className="flex justify-between items-center">
+            <div>
+              <p className="font-bold">Adrin Laue</p>
+              <p className="text-sm">Founder Member</p>
+            </div>
+            <div>
+              <div>
+                <Star sx={{ fontSize: "1rem" }} />
+                <Star sx={{ fontSize: "1rem" }} />
+                <Star sx={{ fontSize: "1rem" }} />
+                <Star sx={{ fontSize: "1rem" }} />
+              </div>
+              <div className="flex justify-between items-center">
+                <ChevronLeft className="border rounded-full" />
+                <ChevronRight className="border rounded-full" />
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
 };
 
-export default MusicLinks;
-=======
-import React from "react";
-
-const LoginPage2 = () => {
-  return <div>LoginPage2</div>;
-};
-
 export default LoginPage2;
->>>>>>> Stashed changes
