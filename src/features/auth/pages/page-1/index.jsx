@@ -1,4 +1,5 @@
 import React from "react";
+import { assets } from "../../../../assets";
 
 const Registration = () => {
   return (
@@ -66,7 +67,16 @@ const Registration = () => {
           <span className="text-border text-sm">Need Help?</span>
         </div>
       </section>
-      <section className="hidden md:block bg-border"></section>
+      <section
+        className="hidden md:block h-[45rem] overflow-hidden"
+        // style={ { background: `url(${assets.auth.registration})no-repeat center center/cover`, } }
+      >
+        <img
+          src={assets.auth.registration}
+          alt="Img Not Found"
+          className="w-full"
+        />
+      </section>
     </main>
   );
 };
