@@ -1,7 +1,7 @@
 import React from "react";
 import { assets } from "../../../../assets";
 
-const Registration = () => {
+const LoginPage1 = () => {
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 px-10 pb-10">
@@ -81,4 +81,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default LoginPage1;

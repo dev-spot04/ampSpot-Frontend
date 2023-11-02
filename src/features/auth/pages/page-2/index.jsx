@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 import { ChevronLeft } from "@mui/icons-material";
 import React from "react";
 import { assets } from "../../../../assets";
@@ -47,3 +48,12 @@ const MusicLinks = () => {
 };
 
 export default MusicLinks;
+=======
+import React from "react";
+
+const LoginPage2 = () => {
+  return <div>LoginPage2</div>;
+};
+
+export default LoginPage2;
+>>>>>>> Stashed changes
