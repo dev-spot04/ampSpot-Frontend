@@ -85,7 +85,7 @@ const LoginPage1 = () => {
       <section
         className="hidden md:flex min-h-full overflow-hidden"
         style={{
-          background: `url(${assets.auth.registration})no-repeat center center/cover`,
+          background: `url(${assets.auth.backgrounds.bg_6})no-repeat center center/cover`,
         }}
       >
         <div className="self-end max-w-xs mx-auto my-8 rounded p-4 backdrop-blur-xl">

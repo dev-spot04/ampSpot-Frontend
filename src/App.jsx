@@ -21,7 +21,10 @@ const App = () => {
 
   const PAGES = [
     ALL_LINKS.Landing,
-    ALL_LINKS.LoginPage1
+    ALL_LINKS.LoginPage1,
+    ALL_LINKS.LoginPage2,
+    ALL_LINKS.LoginPage3,
+    ALL_LINKS.LoginPage4,
   ];
 
   console.log(authCtx.role);
