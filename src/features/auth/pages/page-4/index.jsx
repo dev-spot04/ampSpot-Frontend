@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
 import React from "react";
+import { Link } from "react-router-dom";
 import { assets } from "../../../../assets";
 
 const LoginPage4 = () => {
@@ -38,7 +39,9 @@ const LoginPage4 = () => {
               />
             </div>
             <div className="grid grid-cols-2 gap-2">
-              <button className="text-center p-3 rounded w-full">Skip</button>
+              <Link to="/page-5" className="text-center p-3 rounded w-full">
+                Skip
+              </Link>
               <button className="text-center bg-blue-600 p-3 rounded w-full">
                 Next
               </button>
@@ -52,26 +55,26 @@ const LoginPage4 = () => {
           background: `url(${assets.auth.registration})no-repeat center center/cover`,
         }}
       >
-        <div className="self-end max-w-xs mx-auto my-8 rounded p-4 backdrop-blur-xl">
+        <div className="self-end max-w-xs mx-auto my-8 rounded p-6 backdrop-blur-xl">
           <p className="mb-5">
             "Music has been used for therapeutic purposes in a variety of
             settings"
           </p>
           <div className="flex justify-between items-center">
             <div>
-              <p className="font-bold">Adrin Laue</p>
-              <p className="text-sm">Founder Member</p>
+              <p className="font-bold text-sm">Adrin Laue</p>
+              <p className="text-sm mt-1">Founder Member</p>
             </div>
             <div>
-              <div>
+              <div className="relative top-[-3px]">
                 <Star sx={{ fontSize: "1rem" }} />
                 <Star sx={{ fontSize: "1rem" }} />
                 <Star sx={{ fontSize: "1rem" }} />
                 <Star sx={{ fontSize: "1rem" }} />
               </div>
-              <div className="flex justify-between items-center">
-                <ChevronLeft className="border rounded-full" />
-                <ChevronRight className="border rounded-full" />
+              <div className="flex justify-between items-center my-1">
+                <ChevronLeft className="border rounded-full scale-75" />
+                <ChevronRight className="border rounded-full scale-75" />
               </div>
             </div>
           </div>

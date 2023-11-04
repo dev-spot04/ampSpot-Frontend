@@ -1,15 +1,9 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  Facebook,
-  Instagram,
-  Star,
-  YouTube,
-} from "@mui/icons-material";
+import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
 import React from "react";
+import { Link } from "react-router-dom";
 import { assets } from "../../../../assets";
 
-const LoginPage1 = () => {
+const LoginPage7 = () => {
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 px-10 pb-10 min-h-screen">
@@ -20,18 +14,17 @@ const LoginPage1 = () => {
             <option value="English (US)">English (US)</option>
           </select>
         </div>
-        <div className="flex flex-col gap-3 max-w-sm justify-center m-auto w-full">
-          <h1 className="font-bold text-xl">Let's get started</h1>
+        <div className="flex flex-col gap-3 max-w-sm justify-center w-full">
+          <h1 className="font-bold text-xl">Login to your profile</h1>
           <form className="flex flex-col max-w-sm">
-            <label htmlFor="name" className="text-xs my-3 font-bold">
-              Name
-            </label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Enter Your Name"
-              className="bg-background outline-none border border-border/50 focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border"
-            />
+            <div className="flex gap-2 bg-blue-50/10 p-1 w-fit rounded">
+              <button type="button" className="bg-border/60 p-1 w-20 rounded">
+                User
+              </button>
+              <button type="button" className="p-1 w-20">
+                DJ
+              </button>
+            </div>
             <label htmlFor="email" className="text-xs my-3 font-bold">
               Email
             </label>
@@ -50,36 +43,26 @@ const LoginPage1 = () => {
               placeholder="Type a strong password"
               className="bg-background outline-none border border-border/50 focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border"
             />
-            <p className="text-xs my-2">
-              Password must be at least 6 characters
-            </p>
-            <div className="flex gap-2 my-3">
-              <input type="checkbox" className="rounded-full" id="tc-agree" />
-              <label className="text-xs" htmlFor="tc-agree">
-                I agree to all of{" "}
-                <a href="/" className="text-border hover:underline">
-                  terms & conditions
-                </a>
-              </label>
+            <div className="flex justify-between items-center">
+              <div className="flex gap-2 my-3">
+                <input type="checkbox" className="rounded-full" id="remember" />
+                <label className="text-xs" htmlFor="remember">
+                  Remember Me
+                </label>
+              </div>
+              <p className="text-blue-500 text-xs">Forgot password?</p>
             </div>
           </form>
-          <button className="text-center bg-border p-2 rounded">
-            Register Now
-          </button>
-          <button className="text-center bg-border p-2 rounded">
-            Sign up with Google
+          <button className="text-center bg-border p-2 rounded">Login</button>
+          <button className="text-center bg-white p-2 rounded text-black">
+            Login With Google
           </button>
           <p className="text-xs text-center my-2">
-            Already have an account? <span className="text-border">Log in</span>
+            New here?{" "}
+            <Link to="/page-1" className="text-border">
+              Register now
+            </Link>
           </p>
-          <div className="flex justify-between items-center">
-            <p className="text-border text-sm">Need Help?</p>
-            <div className="flex gap-2">
-              <Instagram sx={{ color: "#223B6A" }} />
-              <Facebook sx={{ color: "#223B6A" }} />
-              <YouTube sx={{ color: "#223B6A" }} />
-            </div>
-          </div>
         </div>
       </section>
       <section
@@ -117,4 +100,4 @@ const LoginPage1 = () => {
   );
 };
 
-export default LoginPage1;
+export default LoginPage7;
