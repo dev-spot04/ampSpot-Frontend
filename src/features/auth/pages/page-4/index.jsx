@@ -6,19 +6,24 @@ import { assets } from "../../../../assets";
 const LoginPage4 = () => {
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
-      <section className="flex flex-col gap-10 md:px-[15%] px-10 pb-10">
-        <div className="flex justify-between items-center my-3">
-          <div className="flex items-center text-sm gap-1">
+      <section className="flex flex-col gap-10 pb-10">
+        <div className="flex justify-between items-center my-3 md:w-[70%] w-[90%] mx-auto">
+          <div className="flex items-center gap-1">
             <ChevronLeft />
-            <p className="font-bold">Back</p>
+            <p className="font-bold text-sm">Back</p>
           </div>
-          <p className="text-xl font-bold">AMP Spot</p>
+          <p className="2xl:text-[30px] font-bold">AMP Spot</p>
         </div>
-        <div className="flex flex-col gap-8 my-auto">
-          <h1 className="font-bold text-2xl text-start">Set up your profile</h1>
-          <form className="flex flex-col max-w-lg gap-3">
+        <div className="flex flex-col gap-8 my-auto md:w-[70%] w-[90%] mx-auto">
+          <h1 className="font-bold text-xl 2xl:text-[30px] text-start text-black1">
+            Set up your profile
+          </h1>
+          <form className="flex flex-col w-[80%] gap-3">
             <div className="flex flex-col">
-              <label htmlFor="name" className="text-xs my-3 font-bold">
+              <label
+                htmlFor="name"
+                className="text-xs 2xl:text-[16px] my-3 font-bold text-black1"
+              >
                 Name
               </label>
               <input
@@ -29,7 +34,10 @@ const LoginPage4 = () => {
               />
             </div>
             <div className="flex flex-col">
-              <label htmlFor="bio" className="text-xs my-3 font-bold">
+              <label
+                htmlFor="bio"
+                className="text-xs 2xl:text-[16px] my-3 font-bold text-black1"
+              >
                 Personal bio
               </label>
               <textarea
@@ -38,7 +46,7 @@ const LoginPage4 = () => {
                 id="bio"
               />
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2 my-10">
               <Link to="/page-5" className="text-center p-3 rounded w-full">
                 Skip
               </Link>
@@ -52,29 +60,29 @@ const LoginPage4 = () => {
       <section
         className="hidden md:flex justify-center h-screen overflow-hidden min-h-full"
         style={{
-          background: `url(${assets.auth.registration})no-repeat center center/cover`,
+          background: `url(${assets.auth.backgrounds.bg_2})no-repeat center center/cover`,
         }}
       >
-        <div className="self-end max-w-xs mx-auto my-8 rounded p-6 backdrop-blur-xl">
-          <p className="mb-5">
+        <div className="w-[79%] self-end mx-auto my-8 rounded p-[7%] backdrop-blur-xl flex flex-col gap-10 2xl:gap-14">
+          <p className="text-[20px] 2xl:text-[30px]">
             "Music has been used for therapeutic purposes in a variety of
             settings"
           </p>
           <div className="flex justify-between items-center">
-            <div>
-              <p className="font-bold text-sm">Adrin Laue</p>
-              <p className="text-sm mt-1">Founder Member</p>
+            <div className="2xl:gap-3 flex flex-col">
+              <p className="font-bold text-sm 2xl:text-[24px]">Adrin Laue</p>
+              <p className="text-sm mt-1 2xl:text-[20px]">Founder Member</p>
             </div>
             <div>
               <div className="relative top-[-3px]">
-                <Star sx={{ fontSize: "1rem" }} />
-                <Star sx={{ fontSize: "1rem" }} />
-                <Star sx={{ fontSize: "1rem" }} />
-                <Star sx={{ fontSize: "1rem" }} />
+                <Star sx={{ fontSize: "1.4rem" }} />
+                <Star sx={{ fontSize: "1.4rem" }} />
+                <Star sx={{ fontSize: "1.4rem" }} />
+                <Star sx={{ fontSize: "1.4rem" }} />
               </div>
               <div className="flex justify-between items-center my-1">
-                <ChevronLeft className="border rounded-full scale-75" />
-                <ChevronRight className="border rounded-full scale-75" />
+                <ChevronLeft className="border rounded-full scale-75 2xl:scale-100" />
+                <ChevronRight className="border rounded-full scale-75 2xl:scale-100" />
               </div>
             </div>
           </div>
