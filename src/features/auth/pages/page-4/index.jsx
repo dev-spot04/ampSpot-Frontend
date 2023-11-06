@@ -1,9 +1,22 @@
 import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
+import { Field, Form, Formik } from "formik";
 import React from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../../../../assets";
+import * as yup from "yup";
 
 const LoginPage4 = () => {
+  const initialValues = {
+    name: "",
+    bio: "",
+  };
+  const validationSchema = yup.object({
+    name: yup.string().required("Enter Your Name"),
+    bio: yup.string(),
+  });
+  const onSubmitHandler = (values) => {
+    console.log(values);
+  };
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10">
@@ -18,43 +31,66 @@ const LoginPage4 = () => {
           <h1 className="font-bold text-xl 2xl:text-[30px] text-start text-black1">
             Set up your profile
           </h1>
-          <form className="flex flex-col w-[80%] gap-3">
-            <div className="flex flex-col">
-              <label
-                htmlFor="name"
-                className="text-xs 2xl:text-[16px] my-3 font-bold text-black1"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter Your Name"
-                className="bg-background outline-none border border-border/50 focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border"
-              />
-            </div>
-            <div className="flex flex-col">
-              <label
-                htmlFor="bio"
-                className="text-xs 2xl:text-[16px] my-3 font-bold text-black1"
-              >
-                Personal bio
-              </label>
-              <textarea
-                className="resize-none bg-background outline-none border border-border/50 focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border min-h-[10rem]"
-                placeholder="Type here..."
-                id="bio"
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-2 my-10">
-              <Link to="/page-5" className="text-center p-3 rounded w-full">
-                Skip
-              </Link>
-              <button className="text-center bg-blue-600 p-3 rounded w-full">
-                Next
-              </button>
-            </div>
-          </form>
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={onSubmitHandler}
+          >
+            {({ errors, touched }) => {
+              return (
+                <Form className="flex flex-col w-[80%] gap-3">
+                  <div className="flex flex-col">
+                    <label
+                      htmlFor="name"
+                      className="text-xs 2xl:text-[16px] my-3 font-bold text-black1"
+                    >
+                      Name
+                    </label>
+                    <Field
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="Enter Your Name"
+                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${
+                        touched.name && errors.name
+                          ? "border-red-500"
+                          : "border-border/50"
+                      }`}
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <label
+                      htmlFor="bio"
+                      className="text-xs 2xl:text-[16px] my-3 font-bold text-black1"
+                    >
+                      Personal bio
+                    </label>
+                    <Field
+                      as={"textarea"}
+                      className="resize-none bg-background outline-none border border-border/50 focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border min-h-[10rem]"
+                      placeholder="Type here..."
+                      id="bio"
+                      name="bio"
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-2 my-10">
+                    <Link
+                      to="/page-5"
+                      className="text-center p-3 rounded w-full"
+                    >
+                      Skip
+                    </Link>
+                    <button
+                      className="text-center bg-blue-600 p-3 rounded w-full"
+                      type="submit"
+                    >
+                      Next
+                    </button>
+                  </div>
+                </Form>
+              );
+            }}
+          </Formik>
         </div>
       </section>
       <section

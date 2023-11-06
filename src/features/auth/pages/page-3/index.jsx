@@ -1,9 +1,27 @@
 import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../../../../assets";
 
 const LoginPage3 = () => {
+  const [sounds, setSounds] = useState([
+    { value: "Rock", selected: false },
+    { value: "Afrobeats", selected: false },
+    { value: "Rock", selected: false },
+    { value: "Afrobeats", selected: false },
+    { value: "HipHop", selected: false },
+    { value: "Rock", selected: false },
+    { value: "Afrobeats", selected: false },
+    { value: "HipHop", selected: false },
+    { value: "Rock", selected: false },
+    { value: "Afrobeats", selected: false },
+    { value: "HipHop", selected: false },
+    { value: "Afrobeats", selected: false },
+    { value: "HipHop", selected: false },
+    { value: "Rock", selected: false },
+    { value: "Afrobeats", selected: false },
+    { value: "HipHop", selected: false },
+  ]);
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10">
@@ -19,30 +37,23 @@ const LoginPage3 = () => {
             Set your sound
           </h1>
           <div className="grid lg:grid-cols-4 grid-cols-2 gap-2 w-full 2xl:text-[18px] text-[14px]">
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-blue1 rounded p-1">Afrobeats</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">HipHop</button>
-            <button className="bg-border/20 rounded p-1">HipHop</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">HipHop</button>
-            <button className="bg-border/20 rounded p-1">Afrobeats</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Afrobeats</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Afrobeats</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Afrobeats</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
-            <button className="bg-border/20 rounded p-1">Rock</button>
+            {sounds.map((sound, index) => (
+              <>
+                <button
+                  className={`${
+                    sound.selected ? "bg-blue1" : "bg-[#0D1322]"
+                  } rounded p-1`}
+                  key={`sound-${index}`}
+                  onClick={() => {
+                    const tempSounds = [...sounds];
+                    tempSounds[index].selected = !tempSounds[index].selected;
+                    setSounds(tempSounds);
+                  }}
+                >
+                  {sound.value}
+                </button>
+              </>
+            ))}
           </div>
           <div className="grid grid-cols-2 w-80 max-w-full gap-2">
             <Link to="/page-4" className="text-center p-3 rounded w-full">

@@ -9,8 +9,25 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../../../../assets";
+import * as yup from "yup";
+import { Field, Form, Formik } from "formik";
 
 const LoginPage1 = () => {
+  const initialValues = {
+    name: "",
+    email: "",
+    password: "",
+    tcAgree: false,
+  };
+  const validationSchema = yup.object({
+    name: yup.string().required("Enter Your Name"),
+    email: yup.string().required("Enter Your Email"),
+    password: yup.string().required("Enter Your Password"),
+    tcAgree: yup.boolean().isTrue(),
+  });
+  const onSubmitHandler = (values) => {
+    console.log(values);
+  };
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10 min-h-screen">
@@ -30,68 +47,110 @@ const LoginPage1 = () => {
             <h1 className="font-bold text-xl 2xl:text-3xl my-[5%] 2xl:my-[10%]">
               Let's get started
             </h1>
-            <form className="flex flex-col">
-              <label
-                htmlFor="name"
-                className="text-xs 2xl:text-[16px] my-3 font-bold"
-              >
-                Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter Your Name"
-                className="bg-background outline-none border border-border/50 focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border mb-2"
-              />
-              <label
-                htmlFor="email"
-                className="text-xs 2xl:text-[16px] my-3 font-bold"
-              >
-                Email
-              </label>
-              <input
-                type="text"
-                id="email"
-                placeholder="Enter Your Email"
-                className="bg-background outline-none border border-border/50 focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border mb-2"
-              />
-              <label
-                htmlFor="email"
-                className="text-xs 2xl:text-[16px] my-3 font-bold"
-              >
-                Password
-              </label>
-              <input
-                type="text"
-                id="email"
-                placeholder="Type a strong password"
-                className="bg-background outline-none border border-border/50 focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border"
-              />
-              <p className="text-xs my-2 2xl:text-[14px]">
-                Password must be at least 6 characters
-              </p>
-              <div className="flex gap-2 my-3 text-xs 2xl:text-[16px]">
-                <input type="checkbox" className="rounded-full" id="tc-agree" />
-                <label htmlFor="tc-agree">
-                  I agree to all of{" "}
-                  <a href="/" className="text-border hover:underline">
-                    terms & conditions
-                  </a>
-                </label>
-              </div>
-            </form>
-            <Link to="/page-2" className="text-center bg-blue1 p-2 rounded">
-              Register Now
-            </Link>
-            <button className="text-center bg-border p-2 rounded">
-              Sign up with Google
-            </button>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={onSubmitHandler}
+            >
+              {({ errors, touched }) => {
+                return (
+                  <Form className="flex flex-col">
+                    {console.log(errors, touched)}
+                    <label
+                      htmlFor="name"
+                      className="text-xs 2xl:text-[16px] my-3 font-bold"
+                    >
+                      Name
+                    </label>
+                    <Field
+                      type="text"
+                      id="name"
+                      name="name"
+                      placeholder="Enter Your Name"
+                      required
+                      className={`${
+                        touched.name && errors.name
+                          ? "border border-red-500"
+                          : "border border-border/50"
+                      } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                    />
+                    <label
+                      htmlFor="email"
+                      className="text-xs 2xl:text-[16px] my-3 font-bold"
+                    >
+                      Email
+                    </label>
+                    <Field
+                      type="text"
+                      id="email"
+                      name="email"
+                      placeholder="Enter Your Email"
+                      required
+                      className={`${
+                        touched.email && errors.email
+                          ? "border border-red-500"
+                          : "border border-border/50"
+                      } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                    />
+                    <label
+                      htmlFor="email"
+                      className="text-xs 2xl:text-[16px] my-3 font-bold"
+                    >
+                      Password
+                    </label>
+                    <Field
+                      type="text"
+                      id="email"
+                      placeholder="Type a strong password"
+                      name="password"
+                      required
+                      className={`${
+                        touched.email && errors.email
+                          ? "border border-red-500"
+                          : "border border-border/50"
+                      } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                    />
+                    <p className="text-xs my-2 2xl:text-[14px]">
+                      Password must be at least 6 characters
+                    </p>
+                    <div className="flex gap-2 my-3 text-xs 2xl:text-[16px]">
+                      <Field
+                        type="checkbox"
+                        className="rounded-full"
+                        id="tc-agree"
+                        name="tcAgree"
+                      />
+                      <label htmlFor="tc-agree">
+                        I agree to all of{" "}
+                        <a href="/" className="text-border hover:underline">
+                          terms & conditions
+                        </a>
+                      </label>
+                    </div>
+                    <button
+                      className="text-center bg-blue1 p-2 rounded hover:bg-blue1/95"
+                      type={"submit"}
+                    >
+                      Register Now
+                    </button>
+                    <Link
+                      to="/page-2"
+                      className="text-center bg-[#25437F] p-2 rounded my-3"
+                    >
+                      Sign up with Google
+                    </Link>
+                  </Form>
+                );
+              }}
+            </Formik>
             <p className="text-xs text-center my-2">
               Already have an account?{" "}
-              <span className="text-border">Log in</span>
+              <Link to="/page-7" className="text-border hover:underline">
+                Log in
+              </Link>
             </p>
             <div className="flex justify-between items-center">
-              <p className="text-border text-sm">Need Help?</p>
+              <p className="text-border text-sm hover:underline">Need Help?</p>
               <div className="flex gap-2">
                 <Instagram sx={{ color: "#223B6A" }} />
                 <Facebook sx={{ color: "#223B6A" }} />

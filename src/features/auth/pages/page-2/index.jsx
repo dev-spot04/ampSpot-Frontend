@@ -1,9 +1,12 @@
-import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
+import { ChevronLeft, ChevronRight, Star, YouTube } from "@mui/icons-material";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../../../assets";
 
 const LoginPage2 = () => {
+  const [plug, setPlug] = useState(-1);
+  const navigate = useNavigate();
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10">
@@ -19,13 +22,29 @@ const LoginPage2 = () => {
             <h1 className="font-bold text-xl mx-auto my-4">
               How about a plug?
             </h1>
-            <button className="text-center bg-green-500 p-3 rounded w-full">
+            <button
+              className={`text-center p-3 rounded w-full ${
+                plug === 0 ? "bg-blue1" : "bg-[#63D471]"
+              }`}
+              onClick={() => setPlug(plug !== 0 ? 0 : -1)}
+            >
               Spotify Link
             </button>
-            <button className="text-center bg-orange-500 p-3 rounded w-full">
+            <button
+              className={`text-center ${
+                plug === 1 ? "bg-blue1" : "bg-[#F6871F]"
+              } p-3 rounded w-full`}
+              onClick={() => setPlug(plug !== 1 ? 1 : -1)}
+            >
               Soundcloud Link
             </button>
-            <button className="text-center bg-red-700 p-3 rounded w-full">
+            <button
+              className={`text-center ${
+                plug === 2 ? "bg-blue1" : "bg-[#FF0000]"
+              } p-3 rounded w-full flex gap-2 justify-center items-center`}
+              onClick={() => setPlug(plug !== 2 ? 2 : -1)}
+            >
+              <YouTube />
               YouTube Link
             </button>
             <div className="grid grid-cols-2 w-full gap-2">
@@ -34,7 +53,7 @@ const LoginPage2 = () => {
               </Link>
               <Link
                 to="/page-3"
-                className="text-center bg-blue-600 p-3 rounded w-full"
+                className="text-center bg-blue1 p-3 rounded w-full hover:bg-blue1/95"
               >
                 Next
               </Link>

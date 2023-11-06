@@ -1,9 +1,23 @@
 import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
-import React from "react";
+import { Field, Form, Formik } from "formik";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../../../../assets";
+import * as yup from "yup";
 
 const LoginPage7 = () => {
+  const [userType, setUserType] = useState("user");
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+  const validationSchema = yup.object({
+    email: yup.string().required("Enter Your Email"),
+    password: yup.string().required("Enter Your Password"),
+  });
+  const onSubmitHandler = (values) => {
+    console.log(values);
+  };
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col pb-10 min-h-screen">
@@ -21,95 +35,117 @@ const LoginPage7 = () => {
             <h1 className="font-bold text-xl 2xl:text-[30px]">
               Login to your profile
             </h1>
-            <form className="flex flex-col w-[80%]">
-              <div className="flex gap-2 bg-blue-50/10 p-1 w-fit rounded">
-                <button type="button" className="bg-blue1 p-1 w-20 rounded">
-                  User
-                </button>
-                <button type="button" className="p-1 w-20">
-                  DJ
-                </button>
-              </div>
-              <label
-                htmlFor="email"
-                className="text-xs 2xl:text-[16px] my-3 font-bold"
-              >
-                Email
-              </label>
-              <input
-                type="text"
-                id="email"
-                placeholder="Enter Your Email"
-                className="bg-background outline-none border border-border/50 focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border"
-              />
-              <label
-                htmlFor="email"
-                className="text-xs 2xl:text-[16px] my-3 font-bold"
-              >
-                Password
-              </label>
-              <input
-                type="text"
-                id="email"
-                placeholder="Type a strong password"
-                className="bg-background outline-none border border-border/50 focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border"
-              />
-              <div className="flex justify-between items-center 2xl:text-[16px] text-xs">
-                <div className="flex gap-2 my-3">
-                  <input
-                    type="checkbox"
-                    className="rounded-full"
-                    id="remember"
-                  />
-                  <label htmlFor="remember">Remember Me</label>
-                </div>
-                <p className="text-blue-500">Forgot password?</p>
-              </div>
-              <button className="text-center p-2 rounded bg-blue1 my-3 mt-5">
-                Login
-              </button>
-              <button className="text-center bg-white p-2 rounded text-black">
-                Login With Google
-              </button>
-              <p className="text-xs text-[16px] text-center my-2">
-                New here?{" "}
-                <Link to="/page-1" className="text-border">
-                  Register now
-                </Link>
-              </p>
-            </form>
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={onSubmitHandler}
+            >
+              {({ errors, touched }) => {
+                return (
+                  <Form className="flex flex-col md:w-[80%]">
+                    <div className="flex gap-2 bg-blue-50/10 p-1 w-fit rounded">
+                      <button
+                        type="button"
+                        className={`${
+                          userType === "user" ? "bg-blue1" : ""
+                        } p-1 w-20 rounded`}
+                        onClick={() => setUserType("user")}
+                      >
+                        User
+                      </button>
+                      <button
+                        type="button"
+                        className={`${
+                          userType === "dj" ? "bg-blue1" : ""
+                        } p-1 w-20 rounded`}
+                        onClick={() => setUserType("dj")}
+                      >
+                        DJ
+                      </button>
+                    </div>
+                    <label
+                      htmlFor="email"
+                      className="text-xs 2xl:text-[16px] my-3 font-bold"
+                    >
+                      Email
+                    </label>
+                    <Field
+                      type="text"
+                      id="email"
+                      name="email"
+                      placeholder="Enter Your Email"
+                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${
+                        touched.email && errors.email
+                          ? "border-red-500"
+                          : "border-border/50"
+                      }`}
+                    />
+                    <label
+                      htmlFor="password"
+                      className="text-xs 2xl:text-[16px] my-3 font-bold"
+                    >
+                      Password
+                    </label>
+                    <Field
+                      type="text"
+                      id="password"
+                      name="password"
+                      placeholder="Type a strong password"
+                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${
+                        touched.password && errors.password
+                          ? "border-red-500"
+                          : "border-border/50"
+                      }`}
+                    />
+                    <div className="flex justify-between items-center 2xl:text-[16px] text-xs">
+                      <div className="flex gap-2 my-3">
+                        <Field
+                          type="checkbox"
+                          id="remember"
+                          name="remember"
+                          className="rounded-full"
+                        />
+                        <label htmlFor="remember">Remember Me</label>
+                      </div>
+                      <p className="text-blue-500">Forgot password?</p>
+                    </div>
+                    <button
+                      className="text-center p-2 rounded bg-blue1 my-3 mt-5"
+                      type="submit"
+                    >
+                      Login
+                    </button>
+                    <button
+                      className="text-center bg-white p-2 rounded text-black"
+                      type="button"
+                    >
+                      Login With Google
+                    </button>
+                    <p className="text-xs text-[16px] text-center my-2">
+                      New here?{" "}
+                      <Link to="/page-1" className="text-border">
+                        Register now
+                      </Link>
+                    </p>
+                  </Form>
+                );
+              }}
+            </Formik>
           </div>
         </div>
       </section>
       <section
-        className="hidden md:flex min-h-full overflow-hidden"
+        className="hidden md:flex min-h-full overflow-hidden items-center"
         style={{
-          background: `url(${assets.auth.backgrounds.bg_6})no-repeat center center/cover`,
+          background: `url(${assets.auth.backgrounds.bg_5})no-repeat center center/cover`,
         }}
       >
-        <div className="w-[79%] self-end mx-auto my-8 rounded p-[7%] backdrop-blur-xl flex flex-col gap-10 2xl:gap-14">
-          <p className="text-[20px] 2xl:text-[30px]">
-            "Music has been used for therapeutic purposes in a variety of
-            settings"
+        <div className="w-[55%] mx-auto my-8 rounded p-[6%] backdrop-blur-xl flex flex-col gap-3 items-center">
+          <img src={assets.auth.Mail} alt="Mail" className="w-[70%] rounded" />
+          <p className="text-[24px] font-bold">Log In with QR code</p>
+          <p className="text-[20px]">
+            Scan with your mobile to log in immediately
           </p>
-          <div className="flex justify-between items-center">
-            <div className="2xl:gap-3 flex flex-col">
-              <p className="font-bold text-sm 2xl:text-[24px]">Adrin Laue</p>
-              <p className="text-sm mt-1 2xl:text-[20px]">Founder Member</p>
-            </div>
-            <div>
-              <div className="relative top-[-3px]">
-                <Star sx={{ fontSize: "1.4rem" }} />
-                <Star sx={{ fontSize: "1.4rem" }} />
-                <Star sx={{ fontSize: "1.4rem" }} />
-                <Star sx={{ fontSize: "1.4rem" }} />
-              </div>
-              <div className="flex justify-between items-center my-1">
-                <ChevronLeft className="border rounded-full scale-75 2xl:scale-100" />
-                <ChevronRight className="border rounded-full scale-75 2xl:scale-100" />
-              </div>
-            </div>
-          </div>
         </div>
       </section>
     </main>
