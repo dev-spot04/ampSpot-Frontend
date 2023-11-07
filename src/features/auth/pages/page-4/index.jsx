@@ -1,11 +1,17 @@
 import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
 import { Field, Form, Formik } from "formik";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../../../assets";
 import * as yup from "yup";
+import agent from "../../../../services/agent";
+import useApiMutation from "../../../../hooks/useApiMutation";
+import { toast } from 'react-toastify'
 
 const LoginPage4 = () => {
+  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(agent.Auth.update);
+  const navigate = useNavigate()
+
   const initialValues = {
     name: "",
     bio: "",
@@ -16,7 +22,18 @@ const LoginPage4 = () => {
   });
   const onSubmitHandler = (values) => {
     console.log(values);
+    const query = `?email=test@test.com`;
+    mutate(values, query)
   };
+  useEffect(() => {
+    if (isSuccess && data) {
+      toast.success(data.message);
+      navigate('/dashboard')
+    } else if (isError) {
+      const errorMessage = error?.response?.data?.message || error.message;
+      toast.error(errorMessage);
+    }
+  }, [isSuccess, isError, data, error]);
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10">
@@ -51,11 +68,10 @@ const LoginPage4 = () => {
                       id="name"
                       name="name"
                       placeholder="Enter Your Name"
-                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${
-                        touched.name && errors.name
-                          ? "border-red-500"
-                          : "border-border/50"
-                      }`}
+                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${touched.name && errors.name
+                        ? "border-red-500"
+                        : "border-border/50"
+                        }`}
                     />
                   </div>
                   <div className="flex flex-col">

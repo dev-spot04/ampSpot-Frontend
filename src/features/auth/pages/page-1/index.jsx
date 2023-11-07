@@ -6,15 +6,21 @@ import {
   Star,
   YouTube,
 } from "@mui/icons-material";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../../../assets";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
+import agent from "../../../../services/agent";
+import { toast } from 'react-toastify'
+import useApiMutation from "../../../../hooks/useApiMutation";
 
 const LoginPage1 = () => {
+  const navigate = useNavigate()
+  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(agent.Auth.register);
+
   const initialValues = {
-    name: "",
+    firstName: "",
     email: "",
     password: "",
     tcAgree: false,
@@ -25,11 +31,24 @@ const LoginPage1 = () => {
     password: yup.string().required("Enter Your Password"),
     tcAgree: yup.boolean().isTrue(),
   });
-  const onSubmitHandler = (values) => {
-    console.log(values);
+  const onSubmitHandler = async (values) => {
+    mutate(values);
   };
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      toast.success(data.message);
+      navigate('/page-2')
+    } else if (isError) {
+      const errorMessage = error?.response?.data?.message || error.message;
+      toast.error(errorMessage);
+    }
+  }, [isSuccess, isError, data, error]);
+
+
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
+      {isLoading && <h1 className="text-7xl text-white">Loading</h1>}
       <section className="flex flex-col gap-10 pb-10 min-h-screen">
         <div className="w-[90%] md:w-[70%] mx-auto">
           <div className="flex justify-between items-center my-3">
@@ -68,11 +87,10 @@ const LoginPage1 = () => {
                       name="name"
                       placeholder="Enter Your Name"
                       required
-                      className={`${
-                        touched.name && errors.name
-                          ? "border border-red-500"
-                          : "border border-border/50"
-                      } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                      className={`${touched.name && errors.name
+                        ? "border border-red-500"
+                        : "border border-border/50"
+                        } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
                     />
                     <label
                       htmlFor="email"
@@ -86,11 +104,10 @@ const LoginPage1 = () => {
                       name="email"
                       placeholder="Enter Your Email"
                       required
-                      className={`${
-                        touched.email && errors.email
-                          ? "border border-red-500"
-                          : "border border-border/50"
-                      } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                      className={`${touched.email && errors.email
+                        ? "border border-red-500"
+                        : "border border-border/50"
+                        } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
                     />
                     <label
                       htmlFor="email"
@@ -104,11 +121,10 @@ const LoginPage1 = () => {
                       placeholder="Type a strong password"
                       name="password"
                       required
-                      className={`${
-                        touched.email && errors.email
-                          ? "border border-red-500"
-                          : "border border-border/50"
-                      } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                      className={`${touched.email && errors.email
+                        ? "border border-red-500"
+                        : "border border-border/50"
+                        } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
                     />
                     <p className="text-xs my-2 2xl:text-[14px]">
                       Password must be at least 6 characters
