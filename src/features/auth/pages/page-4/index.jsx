@@ -6,11 +6,13 @@ import { assets } from "../../../../assets";
 import * as yup from "yup";
 import agent from "../../../../services/agent";
 import useApiMutation from "../../../../hooks/useApiMutation";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 
 const LoginPage4 = () => {
-  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(agent.Auth.update);
-  const navigate = useNavigate()
+  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
+    agent.Auth.update,
+  );
+  const navigate = useNavigate();
 
   const initialValues = {
     name: "",
@@ -23,25 +25,35 @@ const LoginPage4 = () => {
   const onSubmitHandler = (values) => {
     console.log(values);
     const query = `?email=test@test.com`;
-    mutate(values, query)
+    mutate(values, query);
   };
   useEffect(() => {
     if (isSuccess && data) {
       toast.success(data.message);
-      navigate('/dashboard')
+      navigate("/dashboard");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
     }
   }, [isSuccess, isError, data, error]);
+  const skipHandler = () => {
+    navigate("/page-5");
+  };
+  const backHandler = () => {
+    navigate("/page-3");
+  };
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10">
         <div className="flex justify-between items-center my-3 md:w-[70%] w-[90%] mx-auto">
-          <div className="flex items-center gap-1">
+          <button
+            type="button"
+            className="flex items-center text-sm gap-1 font-bold"
+            onClick={backHandler}
+          >
             <ChevronLeft />
-            <p className="font-bold text-sm">Back</p>
-          </div>
+            <p className="font-bold">Back</p>
+          </button>
           <p className="2xl:text-[30px] font-bold">AMP Spot</p>
         </div>
         <div className="flex flex-col gap-8 my-auto md:w-[70%] w-[90%] mx-auto">
@@ -68,10 +80,11 @@ const LoginPage4 = () => {
                       id="name"
                       name="name"
                       placeholder="Enter Your Name"
-                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${touched.name && errors.name
-                        ? "border-red-500"
-                        : "border-border/50"
-                        }`}
+                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${
+                        touched.name && errors.name
+                          ? "border-red-500"
+                          : "border-border/50"
+                      }`}
                     />
                   </div>
                   <div className="flex flex-col">
@@ -90,12 +103,13 @@ const LoginPage4 = () => {
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-2 my-10">
-                    <Link
+                    <button
+                      onClick={skipHandler}
                       to="/page-5"
                       className="text-center p-3 rounded w-full"
                     >
                       Skip
-                    </Link>
+                    </button>
                     <button
                       className="text-center bg-blue-600 p-3 rounded w-full"
                       type="submit"

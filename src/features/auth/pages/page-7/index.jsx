@@ -4,32 +4,36 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../../../assets";
 import * as yup from "yup";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 import useApiMutation from "../../../../hooks/useApiMutation";
 import agent from "../../../../services/agent";
 
 const LoginPage7 = () => {
   const [userType, setUserType] = useState("user");
-  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(agent.Auth.login);
+  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
+    agent.Auth.login,
+  );
 
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
   };
   const validationSchema = yup.object({
-    email: yup.string().required("Enter Your Email"),
+    email: yup.string().email().required("Enter Your Email"),
     password: yup.string().required("Enter Your Password"),
   });
   const onSubmitHandler = (values) => {
+    values = { ...values, userType };
+    console.log(values);
     mutate(values);
   };
 
   useEffect(() => {
     if (isSuccess && data) {
       toast.success(data.message);
-      navigate('/dashboard')
+      navigate("/dashboard");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
@@ -64,16 +68,18 @@ const LoginPage7 = () => {
                     <div className="flex gap-2 bg-blue-50/10 p-1 w-fit rounded">
                       <button
                         type="button"
-                        className={`${userType === "user" ? "bg-blue1" : ""
-                          } p-1 w-20 rounded`}
+                        className={`${
+                          userType === "user" ? "bg-blue1" : ""
+                        } p-1 w-20 rounded`}
                         onClick={() => setUserType("user")}
                       >
                         User
                       </button>
                       <button
                         type="button"
-                        className={`${userType === "dj" ? "bg-blue1" : ""
-                          } p-1 w-20 rounded`}
+                        className={`${
+                          userType === "dj" ? "bg-blue1" : ""
+                        } p-1 w-20 rounded`}
                         onClick={() => setUserType("dj")}
                       >
                         DJ
@@ -90,10 +96,11 @@ const LoginPage7 = () => {
                       id="email"
                       name="email"
                       placeholder="Enter Your Email"
-                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${touched.email && errors.email
-                        ? "border-red-500"
-                        : "border-border/50"
-                        }`}
+                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${
+                        touched.email && errors.email
+                          ? "border-red-500"
+                          : "border-border/50"
+                      }`}
                     />
                     <label
                       htmlFor="password"
@@ -102,14 +109,15 @@ const LoginPage7 = () => {
                       Password
                     </label>
                     <Field
-                      type="text"
+                      type="password"
                       id="password"
                       name="password"
                       placeholder="Type a strong password"
-                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${touched.password && errors.password
-                        ? "border-red-500"
-                        : "border-border/50"
-                        }`}
+                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${
+                        touched.password && errors.password
+                          ? "border-red-500"
+                          : "border-border/50"
+                      }`}
                     />
                     <div className="flex justify-between items-center 2xl:text-[16px] text-xs">
                       <div className="flex gap-2 my-3">

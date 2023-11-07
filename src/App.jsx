@@ -32,7 +32,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <div id="" className="relative min-h-[100vh] pb-[214px]">
+        <div id="" className="relative min-h-[100vh]">
           <div className="">
             {loading ? (
               <SplashScreen />

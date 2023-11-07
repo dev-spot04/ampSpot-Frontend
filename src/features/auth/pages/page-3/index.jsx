@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../../../assets";
 
 const LoginPage3 = () => {
@@ -22,14 +22,28 @@ const LoginPage3 = () => {
     { value: "Afrobeats", selected: false },
     { value: "HipHop", selected: false },
   ]);
+  const navigate = useNavigate();
+  const backHandler = () => {
+    navigate("/page-2");
+  };
+  const skipHandler = () => {
+    navigate("/page-4");
+  };
+  const nextHandler = () => {
+    console.log(sounds);
+  };
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10">
         <div className="flex justify-between items-center my-3 w-[90%] md:w-[70%] mx-auto">
-          <div className="flex items-center text-sm gap-1">
+          <button
+            type="button"
+            className="flex items-center text-sm gap-1 font-bold"
+            onClick={backHandler}
+          >
             <ChevronLeft />
             <p className="font-bold">Back</p>
-          </div>
+          </button>
           <p className="text-xl font-bold">AMP Spot</p>
         </div>
         <div className="flex flex-col items-center gap-8 m-auto w-[90%] md:w-[70%]">
@@ -56,15 +70,21 @@ const LoginPage3 = () => {
             ))}
           </div>
           <div className="grid grid-cols-2 w-80 max-w-full gap-2">
-            <Link to="/page-4" className="text-center p-3 rounded w-full">
+            <button
+              onClick={skipHandler}
+              type="button"
+              to="/page-4"
+              className="text-center p-3 rounded w-full"
+            >
               Skip
-            </Link>
-            <Link
+            </button>
+            <button
+              onClick={nextHandler}
               to="/page-4"
               className="text-center bg-blue-600 p-3 rounded w-full"
             >
               Next
-            </Link>
+            </button>
           </div>
         </div>
       </section>
