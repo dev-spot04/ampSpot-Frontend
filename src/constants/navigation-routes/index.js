@@ -1,31 +1,31 @@
 import { lazy } from "react";
 const Landing = lazy(() => import("../../pages/landing"));
-const LoginPage1 = lazy(() => import("../../features/auth/pages/page-1"));
+const LoginPage1 = lazy(() => import("../../features/auth/pages/register"));
 const LoginPage2 = lazy(() => import("../../features/auth/pages/page-2"));
 const LoginPage3 = lazy(() => import("../../features/auth/pages/page-3"));
 const LoginPage4 = lazy(() => import("../../features/auth/pages/page-4"));
 const LoginPage5 = lazy(() => import("../../features/auth/pages/page-5"));
 const LoginPage6 = lazy(() => import("../../features/auth/pages/page-6"));
-const LoginPage7 = lazy(() => import("../../features/auth/pages/page-7"));
+const LoginPage7 = lazy(() => import("../../features/auth/pages/login"));
 export const ALL_LINKS = {
   Landing: {
     pageLink: "/",
-    view: Landing,
+    view: LoginPage1,
     displayName: "Landing",
     show: {
       dj: true,
-      customer: true,
+      user: true,
       null: true,
     },
     loginRequire: false,
   },
   LoginPage1: {
-    pageLink: "/page-1",
+    pageLink: "/register",
     view: LoginPage1,
     displayName: "LoginPage1",
     show: {
       dj: true,
-      customer: true,
+      user: true,
       null: true,
     },
     loginRequire: false,
@@ -36,10 +36,10 @@ export const ALL_LINKS = {
     displayName: "LoginPage2",
     show: {
       dj: true,
-      customer: true,
+      user: true,
       null: true,
     },
-    loginRequire: false,
+    loginRequire: true,
   },
   LoginPage3: {
     pageLink: "/page-3",
@@ -47,10 +47,10 @@ export const ALL_LINKS = {
     displayName: "LoginPage3",
     show: {
       dj: true,
-      customer: true,
+      user: true,
       null: true,
     },
-    loginRequire: false,
+    loginRequire: true,
   },
   LoginPage4: {
     pageLink: "/page-4",
@@ -58,10 +58,10 @@ export const ALL_LINKS = {
     displayName: "LoginPage4",
     show: {
       dj: true,
-      customer: true,
+      user: true,
       null: true,
     },
-    loginRequire: false,
+    loginRequire: true,
   },
   LoginPage5: {
     pageLink: "/page-5",
@@ -69,10 +69,10 @@ export const ALL_LINKS = {
     displayName: "LoginPage5",
     show: {
       dj: true,
-      customer: true,
+      user: true,
       null: true,
     },
-    loginRequire: false,
+    loginRequire: true,
   },
   LoginPage6: {
     pageLink: "/page-6",
@@ -80,18 +80,18 @@ export const ALL_LINKS = {
     displayName: "LoginPage6",
     show: {
       dj: true,
-      customer: true,
+      user: true,
       null: true,
     },
-    loginRequire: false,
+    loginRequire: true,
   },
   LoginPage7: {
-    pageLink: "/page-7",
+    pageLink: "/login",
     view: LoginPage7,
     displayName: "LoginPage7",
     show: {
       dj: true,
-      customer: true,
+      user: true,
       null: true,
     },
     loginRequire: false,

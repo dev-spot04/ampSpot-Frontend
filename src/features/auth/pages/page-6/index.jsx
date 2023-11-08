@@ -16,7 +16,7 @@ const LoginPage5 = () => {
             You've been verified
           </p>
           <Link
-            to="/page-7"
+            to="/login"
             className="bg-blue-500 w-40 text-center self-center rounded p-1 2xl:text-[20px]"
           >
             Continue

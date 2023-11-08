@@ -9,7 +9,7 @@ import useApiMutation from "../../../../hooks/useApiMutation";
 import agent from "../../../../services/agent";
 
 const LoginPage7 = () => {
-  const [userType, setUserType] = useState("user");
+
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.login,
   );
@@ -25,14 +25,13 @@ const LoginPage7 = () => {
     password: yup.string().required("Enter Your Password"),
   });
   const onSubmitHandler = (values) => {
-    values = { ...values, userType };
-    console.log(values);
+    values = { ...values };
     mutate(values);
   };
 
   useEffect(() => {
     if (isSuccess && data) {
-      toast.success(data.message);
+      // toast.success(data.message);
       navigate("/dashboard");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
@@ -65,26 +64,7 @@ const LoginPage7 = () => {
               {({ errors, touched }) => {
                 return (
                   <Form className="flex flex-col md:w-[80%]">
-                    <div className="flex gap-2 bg-blue-50/10 p-1 w-fit rounded">
-                      <button
-                        type="button"
-                        className={`${
-                          userType === "user" ? "bg-blue1" : ""
-                        } p-1 w-20 rounded`}
-                        onClick={() => setUserType("user")}
-                      >
-                        User
-                      </button>
-                      <button
-                        type="button"
-                        className={`${
-                          userType === "dj" ? "bg-blue1" : ""
-                        } p-1 w-20 rounded`}
-                        onClick={() => setUserType("dj")}
-                      >
-                        DJ
-                      </button>
-                    </div>
+
                     <label
                       htmlFor="email"
                       className="text-xs 2xl:text-[16px] my-3 font-bold"
@@ -96,11 +76,10 @@ const LoginPage7 = () => {
                       id="email"
                       name="email"
                       placeholder="Enter Your Email"
-                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${
-                        touched.email && errors.email
+                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${touched.email && errors.email
                           ? "border-red-500"
                           : "border-border/50"
-                      }`}
+                        }`}
                     />
                     <label
                       htmlFor="password"
@@ -113,11 +92,10 @@ const LoginPage7 = () => {
                       id="password"
                       name="password"
                       placeholder="Type a strong password"
-                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${
-                        touched.password && errors.password
+                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${touched.password && errors.password
                           ? "border-red-500"
                           : "border-border/50"
-                      }`}
+                        }`}
                     />
                     <div className="flex justify-between items-center 2xl:text-[16px] text-xs">
                       <div className="flex gap-2 my-3">
@@ -145,7 +123,7 @@ const LoginPage7 = () => {
                     </button>
                     <p className="text-xs text-[16px] text-center my-2">
                       New here?{" "}
-                      <Link to="/page-1" className="text-border">
+                      <Link to="/register" className="text-border">
                         Register now
                       </Link>
                     </p>

@@ -6,8 +6,10 @@ const instance = axios.create({
 
 instance.interceptors.request.use(function (config) {
   try {
-    const token = localStorage.getItem("token");
-    config.headers["Authorization"] = `Bearer ${token}`;
+    const userState = localStorage.getItem("userState");
+    config.headers["Authorization"] = `Bearer ${JSON.parse(userState).token}`;
+    config.headers["userid"] = `${JSON.parse(userState).id}`;
+    config.headers['path'] = window.location.pathname
   } catch (e) {
     console.log(e);
   }

@@ -5,7 +5,6 @@ const useApiMutation = (apiFunction) => {
         const response = await apiFunction(values, query);
         return response.data;
     });
-
     return {
         mutate: (values, query = '') => mutation.mutate({ values, query }),
         isLoading: mutation.isLoading,

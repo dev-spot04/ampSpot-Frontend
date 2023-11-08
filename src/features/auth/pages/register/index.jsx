@@ -6,7 +6,7 @@ import {
   Star,
   YouTube,
 } from "@mui/icons-material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../../../assets";
 import * as yup from "yup";
@@ -14,11 +14,14 @@ import { Field, Form, Formik } from "formik";
 import agent from "../../../../services/agent";
 import { toast } from 'react-toastify'
 import useApiMutation from "../../../../hooks/useApiMutation";
-
+import { login } from "../../../../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 const LoginPage1 = () => {
   const navigate = useNavigate()
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(agent.Auth.register);
-
+  const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector(state => state.user)
+  const [userType, setUserType] = useState("user");
   const initialValues = {
     firstName: "",
     email: "",
@@ -32,12 +35,21 @@ const LoginPage1 = () => {
     tcAgree: yup.boolean().isTrue(),
   });
   const onSubmitHandler = async (values) => {
-    mutate(values);
+    mutate({
+      ...values,
+      role: userType
+    });
   };
-
   useEffect(() => {
     if (isSuccess && data) {
-      toast.success(data.message);
+      // toast.success(data.message);
+      dispatch(login({
+        isAuthenticated: true,
+        user: data.user,
+        token: data.token,
+        id: data.user._id,
+        role: data.user.role
+      }))
       navigate('/page-2')
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
@@ -48,7 +60,7 @@ const LoginPage1 = () => {
 
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
-      {isLoading && <h1 className="text-7xl text-white">Loading</h1>}
+      {/* {isLoading && <h1 className="text-7xl text-white">Loading</h1>} */}
       <section className="flex flex-col gap-10 pb-10 min-h-screen">
         <div className="w-[90%] md:w-[70%] mx-auto">
           <div className="flex justify-between items-center my-3">
@@ -74,7 +86,24 @@ const LoginPage1 = () => {
               {({ errors, touched }) => {
                 return (
                   <Form className="flex flex-col">
-                    {console.log(errors, touched)}
+                    <div className="flex gap-2 bg-blue-50/10 p-1 w-fit rounded">
+                      <button
+                        type="button"
+                        className={`${userType === "user" ? "bg-blue1" : ""
+                          } p-1 w-20 rounded`}
+                        onClick={() => setUserType("user")}
+                      >
+                        User
+                      </button>
+                      <button
+                        type="button"
+                        className={`${userType === "dj" ? "bg-blue1" : ""
+                          } p-1 w-20 rounded`}
+                        onClick={() => setUserType("dj")}
+                      >
+                        DJ
+                      </button>
+                    </div>
                     <label
                       htmlFor="name"
                       className="text-xs 2xl:text-[16px] my-3 font-bold"
@@ -149,19 +178,19 @@ const LoginPage1 = () => {
                     >
                       Register Now
                     </button>
-                    <Link
+                    {/* <Link
                       to="/page-2"
                       className="text-center bg-[#25437F] p-2 rounded my-3"
                     >
                       Sign up with Google
-                    </Link>
+                    </Link> */}
                   </Form>
                 );
               }}
             </Formik>
             <p className="text-xs text-center my-2">
               Already have an account?{" "}
-              <Link to="/page-7" className="text-border hover:underline">
+              <Link to="/login" className="text-border hover:underline">
                 Log in
               </Link>
             </p>

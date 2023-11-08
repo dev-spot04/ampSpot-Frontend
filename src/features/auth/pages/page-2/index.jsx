@@ -6,57 +6,80 @@ import { assets } from "../../../../assets";
 import agent from "../../../../services/agent";
 import useApiMutation from "../../../../hooks/useApiMutation";
 import { toast } from 'react-toastify'
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../../../../redux/userSlice";
 const LoginPage2 = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.update,
   );
+  const { user } = useSelector(state => state.user)
+
+  const dispatch = useDispatch()
   const [plug, setPlug] = useState(-1);
   const [musicLinks, setMusicLinks] = useState({
     spotifyLink: "",
     soundCloudLink: "",
     youtubeLink: "",
   });
+  useEffect(() => {
+    setMusicLinks({
+      ...musicLinks,
+      spotifyLink: user.spotifyLink,
+      soundCloudLink: user.soundCloudLink,
+      youtubeLink: user.youtubeLink,
+    });
+  }, [user])
   const handleLinkChange = (platform, value) => {
     setMusicLinks({
       ...musicLinks,
       [platform]: value,
     });
+
   };
   const navigate = useNavigate();
   const nextHandler = () => {
-    mutate(musicLinks)
+    const query = `?email=${user.email}`
+    mutate(musicLinks, query)
     // navigate("/page-3");
   };
   const skipHandler = () => {
+    const query = `?email=${user.email}`
+    mutate({}, query)
     navigate("/page-3");
   };
   const backHandler = () => {
-    navigate("/page-1");
+    navigate("/register");
   };
 
   useEffect(() => {
     if (isSuccess && data) {
-      toast.success(data.message);
+      // toast.success(data.message);
+      dispatch(update({
+        user: {
+          ...user,
+          ...data.user
+        }
+      }))
       navigate("/page-3");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
     }
   }, [isSuccess, isError, data, error]);
-  
+
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10">
         <div className="w-[90%] md:w-[70%] mx-auto h-full flex flex-col">
           <div className="flex justify-between items-center my-3">
-            <button
+            {/* <button
               type="button"
               className="flex items-center text-sm gap-1 font-bold"
               onClick={backHandler}
             >
               <ChevronLeft />
               <p className="font-bold">Back</p>
-            </button>
+            </button> */}
             <p className="text-xl font-bold">AMP Spot</p>
           </div>
           <div className="flex flex-col items-center gap-3 w-full mt-[20%] 2xl:mt-[40%]">
@@ -68,6 +91,7 @@ const LoginPage2 = () => {
               className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${plug === 0 ? "bg-blue1" : "bg-[#63D471]"
                 }`}
               placeholder="Spotify Link"
+              defaultValue={user.spotifyLink}
               value={musicLinks.spotifyLink}
               onChange={(e) => handleLinkChange('spotifyLink', e.target.value)}
             />
@@ -84,6 +108,7 @@ const LoginPage2 = () => {
               className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${plug === 0 ? "bg-blue1" : "bg-[#F6871F]"
                 }`}
               placeholder="Soundcloud Link"
+              defaultValue={user.soundCloudLink}
               value={musicLinks.soundCloudLink}
               onChange={(e) => handleLinkChange('soundCloudLink', e.target.value)}
             />
@@ -99,6 +124,7 @@ const LoginPage2 = () => {
               type="text"
               className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${plug === 0 ? "bg-blue1" : "bg-[#FF0000]"
                 }`}
+              defaultValue={user.youtubeLink}
               placeholder="Youtube Link"
               value={musicLinks.youtubeLink}
               onChange={(e) => handleLinkChange('youtubeLink', e.target.value)}

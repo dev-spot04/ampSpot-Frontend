@@ -5,37 +5,55 @@ import { assets } from "../../../../assets";
 import useApiMutation from "../../../../hooks/useApiMutation";
 import agent from "../../../../services/agent";
 import { toast } from 'react-toastify'
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../../../../redux/userSlice";
 const LoginPage3 = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.update,
   );
+  const { user } = useSelector(state => state.user)
+
+  const dispatch = useDispatch()
   const [sounds, setSounds] = useState([
     { value: "Rock", selected: false },
     { value: "Afrobeats", selected: false },
-    { value: "Rock", selected: false },
-    { value: "Afrobeats", selected: false },
+    { value: "ASDf", selected: false },
+    { value: "dfghd", selected: false },
     { value: "HipHop", selected: false },
-    { value: "Rock", selected: false },
-    { value: "Afrobeats", selected: false },
-    { value: "HipHop", selected: false },
-    { value: "Rock", selected: false },
-    { value: "Afrobeats", selected: false },
-    { value: "HipHop", selected: false },
-    { value: "Afrobeats", selected: false },
-    { value: "HipHop", selected: false },
-    { value: "Rock", selected: false },
-    { value: "Afrobeats", selected: false },
-    { value: "HipHop", selected: false },
+    { value: "Rocfjk", selected: false },
+    { value: "dhgd", selected: false },
+    { value: "asdfasdf", selected: false },
+    { value: "dfgh", selected: false },
+    { value: "sfdgs", selected: false },
+    { value: "dfghdf", selected: false },
+    { value: "hhfhfg", selected: false },
+    { value: "asdfsf", selected: false },
+    { value: "fasdfa", selected: false },
+    { value: "hjfghjf", selected: false },
+    { value: "asdfsd", selected: false },
   ]);
+  useEffect(() => {
+    setSounds((prev) => prev.map((item) =>
+      user.sounds.find(((s) => s.sound === item.value)) ? {
+        value: item.value,
+        selected: true
+      } : {
+        value: item.value,
+        selected: false
+      }
+    ))
+  }, [user])
   const navigate = useNavigate();
   const backHandler = () => {
     navigate("/page-2");
   };
   const skipHandler = () => {
+    const query = `?email=${user.email}`
+    mutate({}, query);
     navigate("/page-4");
   };
   const nextHandler = () => {
-    const query = `?email=${'test@test.com'}`
+    const query = `?email=${user.email}`
     const payload = sounds
       .map(item => {
         if (item.selected) return { sound: item.value };
@@ -47,7 +65,13 @@ const LoginPage3 = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      toast.success(data.message);
+      // toast.success(data.message);
+      dispatch(update({
+        user: {
+          ...user,
+          ...data.user
+        }
+      }))
       navigate("/page-4");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;

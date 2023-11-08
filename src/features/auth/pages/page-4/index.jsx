@@ -7,29 +7,37 @@ import * as yup from "yup";
 import agent from "../../../../services/agent";
 import useApiMutation from "../../../../hooks/useApiMutation";
 import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { update } from "../../../../redux/userSlice";
 
 const LoginPage4 = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.update,
   );
+  const dispatch = useDispatch()
+  const { user } = useSelector(state => state.user)
   const navigate = useNavigate();
 
   const initialValues = {
-    name: "",
-    bio: "",
+    bio: user.bio || "",
   };
   const validationSchema = yup.object({
-    name: yup.string().required("Enter Your Name"),
     bio: yup.string(),
   });
   const onSubmitHandler = (values) => {
-    console.log(values);
-    const query = `?email=test@test.com`;
+    const query = `?email=${user.email}`;
     mutate(values, query);
   };
+
   useEffect(() => {
     if (isSuccess && data) {
-      toast.success(data.message);
+      // toast.success(data.message);
+      dispatch(update({
+        user: {
+          ...user,
+          ...data.user
+        }
+      }))
       navigate("/dashboard");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
@@ -37,6 +45,8 @@ const LoginPage4 = () => {
     }
   }, [isSuccess, isError, data, error]);
   const skipHandler = () => {
+    const query = `?email=${user.email}`;
+    mutate({}, query);
     navigate("/page-5");
   };
   const backHandler = () => {
@@ -79,12 +89,13 @@ const LoginPage4 = () => {
                       type="text"
                       id="name"
                       name="name"
+                      value={user.firstName}
+                      readOnly
                       placeholder="Enter Your Name"
-                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${
-                        touched.name && errors.name
-                          ? "border-red-500"
-                          : "border-border/50"
-                      }`}
+                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${touched.name && errors.name
+                        ? "border-red-500"
+                        : "border-border/50"
+                        }`}
                     />
                   </div>
                   <div className="flex flex-col">
@@ -100,6 +111,7 @@ const LoginPage4 = () => {
                       placeholder="Type here..."
                       id="bio"
                       name="bio"
+
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-2 my-10">
