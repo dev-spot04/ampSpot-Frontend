@@ -1,9 +1,14 @@
 import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../../../assets";
-
+import useApiMutation from "../../../../hooks/useApiMutation";
+import agent from "../../../../services/agent";
+import { toast } from 'react-toastify'
 const LoginPage3 = () => {
+  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
+    agent.Auth.update,
+  );
   const [sounds, setSounds] = useState([
     { value: "Rock", selected: false },
     { value: "Afrobeats", selected: false },
@@ -30,8 +35,26 @@ const LoginPage3 = () => {
     navigate("/page-4");
   };
   const nextHandler = () => {
-    console.log(sounds);
+    const query = `?email=${'test@test.com'}`
+    const payload = sounds
+      .map(item => {
+        if (item.selected) return { sound: item.value };
+        return null;
+      })
+      .filter(value => value !== null);
+    mutate({ sounds: payload }, query);
   };
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      toast.success(data.message);
+      navigate("/page-4");
+    } else if (isError) {
+      const errorMessage = error?.response?.data?.message || error.message;
+      toast.error(errorMessage);
+    }
+  }, [isSuccess, isError, data, error]);
+
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10">
@@ -54,9 +77,8 @@ const LoginPage3 = () => {
             {sounds.map((sound, index) => (
               <>
                 <button
-                  className={`${
-                    sound.selected ? "bg-blue1" : "bg-[#0D1322]"
-                  } rounded p-1`}
+                  className={`${sound.selected ? "bg-blue1" : "bg-[#0D1322]"
+                    } rounded p-1`}
                   key={`sound-${index}`}
                   onClick={() => {
                     const tempSounds = [...sounds];

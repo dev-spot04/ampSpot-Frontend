@@ -12,44 +12,39 @@ import { assets } from "../../../../assets";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
 import agent from "../../../../services/agent";
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify'
 import useApiMutation from "../../../../hooks/useApiMutation";
 
 const LoginPage1 = () => {
-  const navigate = useNavigate();
-  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
-    agent.Auth.register,
-  );
+  const navigate = useNavigate()
+  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(agent.Auth.register);
 
   const initialValues = {
-    name: "",
+    firstName: "",
     email: "",
     password: "",
     tcAgree: false,
   };
   const validationSchema = yup.object({
     name: yup.string().required("Enter Your Name"),
-    email: yup.string().email().required("Enter Your Email"),
-    password: yup
-      .string()
-      .min(6, "Password must be at least 6 characters")
-      .required("Enter Your Password"),
+    email: yup.string().required("Enter Your Email"),
+    password: yup.string().required("Enter Your Password"),
     tcAgree: yup.boolean().isTrue(),
   });
   const onSubmitHandler = async (values) => {
-    console.log(values);
     mutate(values);
   };
 
   useEffect(() => {
     if (isSuccess && data) {
       toast.success(data.message);
-      navigate("/page-2");
+      navigate('/page-2')
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
     }
   }, [isSuccess, isError, data, error]);
+
 
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
@@ -79,6 +74,7 @@ const LoginPage1 = () => {
               {({ errors, touched }) => {
                 return (
                   <Form className="flex flex-col">
+                    {console.log(errors, touched)}
                     <label
                       htmlFor="name"
                       className="text-xs 2xl:text-[16px] my-3 font-bold"
@@ -91,11 +87,10 @@ const LoginPage1 = () => {
                       name="name"
                       placeholder="Enter Your Name"
                       required
-                      className={`${
-                        touched.name && errors.name
-                          ? "border border-red-500"
-                          : "border border-border/50"
-                      } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                      className={`${touched.name && errors.name
+                        ? "border border-red-500"
+                        : "border border-border/50"
+                        } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
                     />
                     <label
                       htmlFor="email"
@@ -109,59 +104,44 @@ const LoginPage1 = () => {
                       name="email"
                       placeholder="Enter Your Email"
                       required
-                      className={`${
-                        touched.email && errors.email
-                          ? "border border-red-500"
-                          : "border border-border/50"
-                      } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                      className={`${touched.email && errors.email
+                        ? "border border-red-500"
+                        : "border border-border/50"
+                        } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
                     />
                     <label
-                      htmlFor="password"
+                      htmlFor="email"
                       className="text-xs 2xl:text-[16px] my-3 font-bold"
                     >
                       Password
                     </label>
                     <Field
-                      type="password"
-                      id="password"
+                      type="text"
+                      id="email"
                       placeholder="Type a strong password"
                       name="password"
                       required
-                      className={`${
-                        touched.password && errors.password
-                          ? "border border-red-500"
-                          : "border border-border/50"
-                      } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                      className={`${touched.email && errors.email
+                        ? "border border-red-500"
+                        : "border border-border/50"
+                        } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
                     />
-                    <p
-                      className={`${
-                        touched.password && errors.password
-                          ? "text-red-500"
-                          : "text-white"
-                      } text-xs my-2 2xl:text-[14px]`}
-                    >
+                    <p className="text-xs my-2 2xl:text-[14px]">
                       Password must be at least 6 characters
                     </p>
-                    <div className="my-3">
-                      <div className="flex gap-2 text-xs 2xl:text-[16px]">
-                        <Field
-                          type="checkbox"
-                          className="rounded-full"
-                          id="tc-agree"
-                          name="tcAgree"
-                        />
-                        <label htmlFor="tc-agree">
-                          I agree to all of{" "}
-                          <a href="/" className="text-border hover:underline">
-                            terms & conditions
-                          </a>
-                        </label>
-                      </div>
-                      {errors.tcAgree && (
-                        <p className="bg-black/40 rounded text-center w-32 text-xs 2xl:text-[16px] p-1 my-1 relative left-10 text-red-400">
-                          agree to continue
-                        </p>
-                      )}
+                    <div className="flex gap-2 my-3 text-xs 2xl:text-[16px]">
+                      <Field
+                        type="checkbox"
+                        className="rounded-full"
+                        id="tc-agree"
+                        name="tcAgree"
+                      />
+                      <label htmlFor="tc-agree">
+                        I agree to all of{" "}
+                        <a href="/" className="text-border hover:underline">
+                          terms & conditions
+                        </a>
+                      </label>
                     </div>
                     <button
                       className="text-center bg-blue1 p-2 rounded hover:bg-blue1/95"

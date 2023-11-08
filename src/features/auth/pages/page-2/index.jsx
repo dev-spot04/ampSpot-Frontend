@@ -1,17 +1,30 @@
 import { ChevronLeft, ChevronRight, Star, YouTube } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../../../../assets";
-
+import agent from "../../../../services/agent";
+import useApiMutation from "../../../../hooks/useApiMutation";
+import { toast } from 'react-toastify'
 const LoginPage2 = () => {
+  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
+    agent.Auth.update,
+  );
   const [plug, setPlug] = useState(-1);
-  const [spotify, setSpotify] = useState("");
-  const [soundCloud, setSoundCloud] = useState("");
-  const [youtube, setYoutube] = useState("");
+  const [musicLinks, setMusicLinks] = useState({
+    spotifyLink: "",
+    soundCloudLink: "",
+    youtubeLink: "",
+  });
+  const handleLinkChange = (platform, value) => {
+    setMusicLinks({
+      ...musicLinks,
+      [platform]: value,
+    });
+  };
   const navigate = useNavigate();
   const nextHandler = () => {
-    console.log(spotify.trim(), soundCloud.trim(), youtube.trim());
+    mutate(musicLinks)
     // navigate("/page-3");
   };
   const skipHandler = () => {
@@ -20,6 +33,17 @@ const LoginPage2 = () => {
   const backHandler = () => {
     navigate("/page-1");
   };
+
+  useEffect(() => {
+    if (isSuccess && data) {
+      toast.success(data.message);
+      navigate("/page-3");
+    } else if (isError) {
+      const errorMessage = error?.response?.data?.message || error.message;
+      toast.error(errorMessage);
+    }
+  }, [isSuccess, isError, data, error]);
+  
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10">
@@ -41,12 +65,11 @@ const LoginPage2 = () => {
             </h1>
             <input
               type="text"
-              className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${
-                plug === 0 ? "bg-blue1" : "bg-[#63D471]"
-              }`}
+              className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${plug === 0 ? "bg-blue1" : "bg-[#63D471]"
+                }`}
               placeholder="Spotify Link"
-              value={spotify}
-              onChange={(e) => setSpotify(e.target.value)}
+              value={musicLinks.spotifyLink}
+              onChange={(e) => handleLinkChange('spotifyLink', e.target.value)}
             />
             {/* <button */}
             {/*   className={`text-center p-3 rounded w-full ${ */}
@@ -58,12 +81,11 @@ const LoginPage2 = () => {
             {/* </button> */}
             <input
               type="text"
-              className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${
-                plug === 0 ? "bg-blue1" : "bg-[#F6871F]"
-              }`}
+              className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${plug === 0 ? "bg-blue1" : "bg-[#F6871F]"
+                }`}
               placeholder="Soundcloud Link"
-              value={soundCloud}
-              onChange={(e) => setSoundCloud(e.target.value)}
+              value={musicLinks.soundCloudLink}
+              onChange={(e) => handleLinkChange('soundCloudLink', e.target.value)}
             />
             {/* <button */}
             {/*   className={`text-center ${ */}
@@ -75,12 +97,11 @@ const LoginPage2 = () => {
             {/* </button> */}
             <input
               type="text"
-              className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${
-                plug === 0 ? "bg-blue1" : "bg-[#FF0000]"
-              }`}
+              className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${plug === 0 ? "bg-blue1" : "bg-[#FF0000]"
+                }`}
               placeholder="Youtube Link"
-              value={youtube}
-              onChange={(e) => setYoutube(e.target.value)}
+              value={musicLinks.youtubeLink}
+              onChange={(e) => handleLinkChange('youtubeLink', e.target.value)}
             />
             {/* <button */}
             {/*   className={`text-center ${ */}
