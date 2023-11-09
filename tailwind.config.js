@@ -8,6 +8,8 @@ module.exports = {
         border: "#223B6A",
         blue1: "#0086FF",
         black1: "#3A3A3A",
+        inputText: "#618BCF",
+        lightBlue: "#98B3E1",
       },
     },
   },

@@ -55,16 +55,16 @@ const LoginPage4 = () => {
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10">
-        <div className="flex justify-between items-center my-3 md:w-[70%] w-[90%] mx-auto">
+        <div className="flex justify-between items-center my-3 w-[90%] md:w-[70%] mx-auto">
           <button
             type="button"
-            className="flex items-center text-sm gap-1 font-bold"
+            className="flex items-center text-xs gap-1 font-bold text-lightBlue 2xl:text-[18px]"
             onClick={backHandler}
           >
             <ChevronLeft />
             <p className="font-bold">Back</p>
           </button>
-          <p className="2xl:text-[30px] font-bold">AMP Spot</p>
+          <p className="2xl:text-3xl font-bold">AMP Spot</p>
         </div>
         <div className="flex flex-col gap-8 my-auto md:w-[70%] w-[90%] mx-auto">
           <h1 className="font-bold text-xl 2xl:text-[30px] text-start text-black1">

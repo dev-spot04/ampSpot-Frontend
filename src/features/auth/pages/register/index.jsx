@@ -12,15 +12,19 @@ import { assets } from "../../../../assets";
 import * as yup from "yup";
 import { Field, Form, Formik } from "formik";
 import agent from "../../../../services/agent";
-import { toast } from 'react-toastify'
+import { toast } from "react-toastify";
 import useApiMutation from "../../../../hooks/useApiMutation";
 import { login } from "../../../../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import InputField from "../../../../components/forms/InputField";
+
 const LoginPage1 = () => {
-  const navigate = useNavigate()
-  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(agent.Auth.register);
-  const dispatch = useDispatch()
-  const { isAuthenticated } = useSelector(state => state.user)
+  const navigate = useNavigate();
+  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
+    agent.Auth.register,
+  );
+  const dispatch = useDispatch();
+  const { isAuthenticated } = useSelector((state) => state.user);
   const [userType, setUserType] = useState("user");
   const initialValues = {
     firstName: "",
@@ -37,26 +41,27 @@ const LoginPage1 = () => {
   const onSubmitHandler = async (values) => {
     mutate({
       ...values,
-      role: userType
+      role: userType,
     });
   };
   useEffect(() => {
     if (isSuccess && data) {
       // toast.success(data.message);
-      dispatch(login({
-        isAuthenticated: true,
-        user: data.user,
-        token: data.token,
-        id: data.user._id,
-        role: data.user.role
-      }))
-      navigate('/page-2')
+      dispatch(
+        login({
+          isAuthenticated: true,
+          user: data.user,
+          token: data.token,
+          id: data.user._id,
+          role: data.user.role,
+        }),
+      );
+      navigate("/page-2");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
     }
   }, [isSuccess, isError, data, error]);
-
 
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
@@ -83,94 +88,54 @@ const LoginPage1 = () => {
               validationSchema={validationSchema}
               onSubmit={onSubmitHandler}
             >
-              {({ errors, touched }) => {
+              {(props) => {
                 return (
-                  <Form className="flex flex-col">
-                    <div className="flex gap-2 bg-blue-50/10 p-1 w-fit rounded">
-                      <button
-                        type="button"
-                        className={`${userType === "user" ? "bg-blue1" : ""
-                          } p-1 w-20 rounded`}
-                        onClick={() => setUserType("user")}
-                      >
-                        User
-                      </button>
-                      <button
-                        type="button"
-                        className={`${userType === "dj" ? "bg-blue1" : ""
-                          } p-1 w-20 rounded`}
-                        onClick={() => setUserType("dj")}
-                      >
-                        DJ
-                      </button>
-                    </div>
-                    <label
-                      htmlFor="name"
-                      className="text-xs 2xl:text-[16px] my-3 font-bold"
-                    >
-                      Name
-                    </label>
-                    <Field
+                  <Form className="flex flex-col text-[#C8D6EF]">
+                    <InputField
+                      label={"Name"}
                       type="text"
-                      id="name"
-                      name="name"
+                      uni="name"
                       placeholder="Enter Your Name"
-                      required
-                      className={`${touched.name && errors.name
-                        ? "border border-red-500"
-                        : "border border-border/50"
-                        } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                      required={true}
+                      {...props}
                     />
-                    <label
-                      htmlFor="email"
-                      className="text-xs 2xl:text-[16px] my-3 font-bold"
-                    >
-                      Email
-                    </label>
-                    <Field
+                    <InputField
+                      label={"Email"}
                       type="text"
-                      id="email"
-                      name="email"
+                      uni="email"
                       placeholder="Enter Your Email"
-                      required
-                      className={`${touched.email && errors.email
-                        ? "border border-red-500"
-                        : "border border-border/50"
-                        } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                      required={true}
+                      {...props}
                     />
-                    <label
-                      htmlFor="email"
-                      className="text-xs 2xl:text-[16px] my-3 font-bold"
-                    >
-                      Password
-                    </label>
-                    <Field
-                      type="text"
-                      id="email"
-                      placeholder="Type a strong password"
-                      name="password"
-                      required
-                      className={`${touched.email && errors.email
-                        ? "border border-red-500"
-                        : "border border-border/50"
-                        } bg-background outline-none placeholder:text-border focus:border-border rounded p-2 px-4 text-sm text-white mb-2`}
+                    <InputField
+                      label={"Password"}
+                      type="password"
+                      uni="password"
+                      placeholder="Enter Your Password"
+                      required={true}
+                      {...props}
+                      lengthWarning={true}
                     />
-                    <p className="text-xs my-2 2xl:text-[14px]">
-                      Password must be at least 6 characters
-                    </p>
-                    <div className="flex gap-2 my-3 text-xs 2xl:text-[16px]">
-                      <Field
-                        type="checkbox"
-                        className="rounded-full"
-                        id="tc-agree"
-                        name="tcAgree"
-                      />
-                      <label htmlFor="tc-agree">
-                        I agree to all of{" "}
-                        <a href="/" className="text-border hover:underline">
-                          terms & conditions
-                        </a>
-                      </label>
+                    <div className="my-3">
+                      <div className="flex gap-2 text-xs 2xl:text-[16px]">
+                        <Field
+                          type="checkbox"
+                          className="rounded-full"
+                          id="tc-agree"
+                          name="tcAgree"
+                        />
+                        <label htmlFor="tc-agree">
+                          I agree to all of{" "}
+                          <a href="/" className="text-blue1 hover:underline">
+                            terms & conditions
+                          </a>
+                        </label>
+                      </div>
+                      {props.errors.tcAgree && (
+                        <p className="bg-black/40 rounded text-center w-32 text-xs 2xl:text-[16px] p-1 my-1 relative left-10 text-red-400">
+                          agree to continue
+                        </p>
+                      )}
                     </div>
                     <button
                       className="text-center bg-blue1 p-2 rounded hover:bg-blue1/95"
@@ -188,18 +153,18 @@ const LoginPage1 = () => {
                 );
               }}
             </Formik>
-            <p className="text-xs text-center my-2">
+            <p className="text-xs text-center my-2 text-[#787878]">
               Already have an account?{" "}
-              <Link to="/login" className="text-border hover:underline">
+              <Link to="/login" className="text-blue1 hover:underline">
                 Log in
               </Link>
             </p>
             <div className="flex justify-between items-center">
-              <p className="text-border text-sm hover:underline">Need Help?</p>
+              <p className="text-blue1 text-sm hover:underline">Need Help?</p>
               <div className="flex gap-2">
-                <Instagram sx={{ color: "#223B6A" }} />
-                <Facebook sx={{ color: "#223B6A" }} />
-                <YouTube sx={{ color: "#223B6A" }} />
+                <Instagram sx={{ color: "#2C549D" }} />
+                <Facebook sx={{ color: "#2C549D" }} />
+                <YouTube sx={{ color: "#2C549D" }} />
               </div>
             </div>
           </div>

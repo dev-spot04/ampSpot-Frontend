@@ -85,13 +85,13 @@ const LoginPage3 = () => {
         <div className="flex justify-between items-center my-3 w-[90%] md:w-[70%] mx-auto">
           <button
             type="button"
-            className="flex items-center text-sm gap-1 font-bold"
+            className="flex items-center text-xs gap-1 font-bold text-lightBlue 2xl:text-[18px]"
             onClick={backHandler}
           >
             <ChevronLeft />
             <p className="font-bold">Back</p>
           </button>
-          <p className="text-xl font-bold">AMP Spot</p>
+          <p className="2xl:text-3xl font-bold">AMP Spot</p>
         </div>
         <div className="flex flex-col items-center gap-8 m-auto w-[90%] md:w-[70%]">
           <h1 className="font-bold text-2xl 2xl:text-[30px] mx-auto">

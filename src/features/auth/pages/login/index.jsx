@@ -7,12 +7,13 @@ import * as yup from "yup";
 import { toast } from "react-toastify";
 import useApiMutation from "../../../../hooks/useApiMutation";
 import agent from "../../../../services/agent";
+import InputField from "../../../../components/forms/InputField";
 
 const LoginPage7 = () => {
-
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.login,
   );
+  const [userType, setUserType] = useState("user");
 
   const navigate = useNavigate();
 
@@ -61,41 +62,44 @@ const LoginPage7 = () => {
               validationSchema={validationSchema}
               onSubmit={onSubmitHandler}
             >
-              {({ errors, touched }) => {
+              {(props) => {
                 return (
                   <Form className="flex flex-col md:w-[80%]">
-
-                    <label
-                      htmlFor="email"
-                      className="text-xs 2xl:text-[16px] my-3 font-bold"
-                    >
-                      Email
-                    </label>
-                    <Field
+                    <div className="flex gap-2 bg-blue-50/10 p-1 w-fit rounded 2xl:my-7 my-2">
+                      <button
+                        type="button"
+                        className={`${
+                          userType === "user" ? "bg-blue1" : ""
+                        } p-1 w-20 rounded`}
+                        onClick={() => setUserType("user")}
+                      >
+                        User
+                      </button>
+                      <button
+                        type="button"
+                        className={`${
+                          userType === "dj" ? "bg-blue1" : ""
+                        } p-1 w-20 rounded`}
+                        onClick={() => setUserType("dj")}
+                      >
+                        DJ
+                      </button>
+                    </div>
+                    <InputField
+                      label={"Email"}
                       type="text"
-                      id="email"
-                      name="email"
+                      uni="email"
                       placeholder="Enter Your Email"
-                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${touched.email && errors.email
-                          ? "border-red-500"
-                          : "border-border/50"
-                        }`}
+                      required={true}
+                      {...props}
                     />
-                    <label
-                      htmlFor="password"
-                      className="text-xs 2xl:text-[16px] my-3 font-bold"
-                    >
-                      Password
-                    </label>
-                    <Field
+                    <InputField
+                      label={"Password"}
                       type="password"
-                      id="password"
-                      name="password"
-                      placeholder="Type a strong password"
-                      className={`bg-background outline-none border focus:border-border rounded p-2 px-4 text-sm text-white placeholder:text-border ${touched.password && errors.password
-                          ? "border-red-500"
-                          : "border-border/50"
-                        }`}
+                      uni="password"
+                      placeholder="Enter Your Password"
+                      required={true}
+                      {...props}
                     />
                     <div className="flex justify-between items-center 2xl:text-[16px] text-xs">
                       <div className="flex gap-2 my-3">
@@ -105,7 +109,9 @@ const LoginPage7 = () => {
                           name="remember"
                           className="rounded-full"
                         />
-                        <label htmlFor="remember">Remember Me</label>
+                        <label htmlFor="remember" className="text-[#787878]">
+                          Remember Me
+                        </label>
                       </div>
                       <p className="text-blue-500">Forgot password?</p>
                     </div>
@@ -123,7 +129,7 @@ const LoginPage7 = () => {
                     </button>
                     <p className="text-xs text-[16px] text-center my-2">
                       New here?{" "}
-                      <Link to="/register" className="text-border">
+                      <Link to="/register" className="text-blue1">
                         Register now
                       </Link>
                     </p>

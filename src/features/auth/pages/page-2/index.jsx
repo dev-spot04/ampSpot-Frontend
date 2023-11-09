@@ -74,13 +74,13 @@ const LoginPage2 = () => {
           <div className="flex justify-between items-center my-3">
             {/* <button
               type="button"
-              className="flex items-center text-sm gap-1 font-bold"
+              className="flex items-center text-xs gap-1 font-bold text-lightBlue 2xl:text-[18px]"
               onClick={backHandler}
             >
               <ChevronLeft />
               <p className="font-bold">Back</p>
-            </button> */}
-            <p className="text-xl font-bold">AMP Spot</p>
+  </button>*/}
+            <p className="2xl:text-3xl font-bold">AMP Spot</p>
           </div>
           <div className="flex flex-col items-center gap-3 w-full mt-[20%] 2xl:mt-[40%]">
             <h1 className="font-bold text-xl mx-auto my-4">
@@ -88,8 +88,9 @@ const LoginPage2 = () => {
             </h1>
             <input
               type="text"
-              className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${plug === 0 ? "bg-blue1" : "bg-[#63D471]"
-                }`}
+              className={`text-center text-[16px] p-3 rounded w-full outline-none placeholder:text-white 2xl:h-[70px] ${
+                plug === 0 ? "bg-blue1" : "bg-[#63D471]"
+              }`}
               placeholder="Spotify Link"
               defaultValue={user.spotifyLink}
               value={musicLinks.spotifyLink}
@@ -105,8 +106,9 @@ const LoginPage2 = () => {
             {/* </button> */}
             <input
               type="text"
-              className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${plug === 0 ? "bg-blue1" : "bg-[#F6871F]"
-                }`}
+              className={`text-center p-3 rounded w-full outline-none placeholder:text-white 2xl:h-[70px] ${
+                plug === 0 ? "bg-blue1" : "bg-[#F6871F]"
+              }`}
               placeholder="Soundcloud Link"
               defaultValue={user.soundCloudLink}
               value={musicLinks.soundCloudLink}
@@ -122,9 +124,9 @@ const LoginPage2 = () => {
             {/* </button> */}
             <input
               type="text"
-              className={`text-center p-3 rounded w-full outline-none placeholder:text-white ${plug === 0 ? "bg-blue1" : "bg-[#FF0000]"
-                }`}
-              defaultValue={user.youtubeLink}
+              className={`text-center p-3 rounded w-full outline-none placeholder:text-white 2xl:h-[70px] ${
+                plug === 0 ? "bg-blue1" : "bg-[#FF0000]"
+              }`}
               placeholder="Youtube Link"
               value={musicLinks.youtubeLink}
               onChange={(e) => handleLinkChange('youtubeLink', e.target.value)}
@@ -138,7 +140,7 @@ const LoginPage2 = () => {
             {/*   <YouTube /> */}
             {/*   YouTube Link */}
             {/* </button> */}
-            <div className="grid grid-cols-2 w-full gap-2">
+            <div className="grid grid-cols-2 w-full gap-2 2xl:h-[70px]">
               <button
                 type="button"
                 to="/page-3"
@@ -150,7 +152,7 @@ const LoginPage2 = () => {
               <button
                 type="button"
                 to="/page-3"
-                className="text-center bg-blue1 p-3 rounded w-full hover:bg-blue1/95"
+                className="text-center bg-blue1 p-3 rounded w-full hover:bg-blue1/95 2xl:h-[70px]"
                 onClick={nextHandler}
               >
                 Next
