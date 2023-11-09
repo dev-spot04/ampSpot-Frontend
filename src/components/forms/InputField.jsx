@@ -13,7 +13,7 @@ const InputField = ({
   ...props
 }) => {
   return (
-    <>
+    <div className="flex flex-col gap-1">
       {label && (
         <label
           htmlFor={uni}
@@ -29,13 +29,15 @@ const InputField = ({
         placeholder={placeholder}
         required={required}
         className={
-          type === "text" || "password"
+          (type === "text" || "password"
             ? `${
                 props.errors[uni] && props.touched[uni]
                   ? "border border-red-500"
                   : "border border-border/50"
-              } bg-background outline-none placeholder:text-inputText focus:border-border rounded-md p-2 px-4 text-[14px] text-white`
-            : "" + " " + className
+              } bg-background outline-none placeholder:text-inputText focus:border-border rounded-md 2xl:h-[51px] p-2 px-4 text-[14px] text-white`
+            : "") +
+          " " +
+          className
         }
       />
       {type === "password" && lengthWarning && (
@@ -49,7 +51,7 @@ const InputField = ({
           Password must be at least 6 characters
         </p>
       )}
-    </>
+    </div>
   );
 };
 

@@ -65,12 +65,12 @@ const LoginPage7 = () => {
               {(props) => {
                 return (
                   <Form className="flex flex-col md:w-[80%]">
-                    <div className="flex gap-2 bg-blue-50/10 p-1 w-fit rounded 2xl:my-7 my-2">
+                    <div className="flex gap-2 bg-blue-50/10 p-1 w-[200px] 2xl:w-[250px] 2xl:h-[60px] rounded 2xl:my-7 my-2">
                       <button
                         type="button"
                         className={`${
                           userType === "user" ? "bg-blue1" : ""
-                        } p-1 w-20 rounded`}
+                        } p-1 w-1/2 rounded`}
                         onClick={() => setUserType("user")}
                       >
                         User
@@ -79,7 +79,7 @@ const LoginPage7 = () => {
                         type="button"
                         className={`${
                           userType === "dj" ? "bg-blue1" : ""
-                        } p-1 w-20 rounded`}
+                        } p-1 w-1/2 rounded`}
                         onClick={() => setUserType("dj")}
                       >
                         DJ
@@ -89,16 +89,18 @@ const LoginPage7 = () => {
                       label={"Email"}
                       type="text"
                       uni="email"
-                      placeholder="Enter Your Email"
+                      placeholder="Enter Your mail"
                       required={true}
+                      className={"placeholder:text-[#B9B9B9]"}
                       {...props}
                     />
                     <InputField
                       label={"Password"}
                       type="password"
                       uni="password"
-                      placeholder="Enter Your Password"
+                      placeholder="Type a strong password"
                       required={true}
+                      className={"placeholder:text-[#B9B9B9]"}
                       {...props}
                     />
                     <div className="flex justify-between items-center 2xl:text-[16px] text-xs">
@@ -116,13 +118,13 @@ const LoginPage7 = () => {
                       <p className="text-blue-500">Forgot password?</p>
                     </div>
                     <button
-                      className="text-center p-2 rounded bg-blue1 my-3 mt-5"
+                      className="text-center p-2 rounded bg-blue1 my-3 mt-5 2xl:h-[50px]"
                       type="submit"
                     >
                       Login
                     </button>
                     <button
-                      className="text-center bg-white p-2 rounded text-black"
+                      className="text-center bg-white p-2 rounded text-black 2xl:h-[50px]"
                       type="button"
                     >
                       Login With Google

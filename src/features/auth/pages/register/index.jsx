@@ -79,8 +79,8 @@ const LoginPage1 = () => {
               <option value="English (US)">English (US)</option>
             </select>
           </div>
-          <div className="flex flex-col gap-3 max-w-lg justify-center w-full mt-8">
-            <h1 className="font-bold text-xl 2xl:text-3xl my-[5%] 2xl:my-[10%]">
+          <div className="flex flex-col gap-3 lg:max-w-[85%] justify-center w-full mt-8">
+            <h1 className="font-bold text-xl 2xl:text-[30px] my-[5%] 2xl:my-[10%]">
               Let's get started
             </h1>
             <Formik
@@ -90,7 +90,7 @@ const LoginPage1 = () => {
             >
               {(props) => {
                 return (
-                  <Form className="flex flex-col text-[#C8D6EF]">
+                  <Form className="flex flex-col text-[#C8D6EF] 2xl:gap-4 gap-2">
                     <InputField
                       label={"Name"}
                       type="text"
@@ -116,7 +116,7 @@ const LoginPage1 = () => {
                       {...props}
                       lengthWarning={true}
                     />
-                    <div className="my-3">
+                    <div className="my-2 mb-8">
                       <div className="flex gap-2 text-xs 2xl:text-[16px]">
                         <Field
                           type="checkbox"
@@ -138,7 +138,7 @@ const LoginPage1 = () => {
                       )}
                     </div>
                     <button
-                      className="text-center bg-blue1 p-2 rounded hover:bg-blue1/95"
+                      className="text-center bg-blue1 p-2 rounded hover:bg-blue1/95 2xl:h-[50px]"
                       type={"submit"}
                     >
                       Register Now
@@ -159,7 +159,7 @@ const LoginPage1 = () => {
                 Log in
               </Link>
             </p>
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between items-center mt-4">
               <p className="text-blue1 text-sm hover:underline">Need Help?</p>
               <div className="flex gap-2">
                 <Instagram sx={{ color: "#2C549D" }} />
