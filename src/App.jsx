@@ -1,27 +1,32 @@
 import React, { Suspense, useContext, useEffect, useState } from "react";
-import { BrowserRouter, Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Navigate,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import SplashScreen from "./features/auth/pages/splash-screen";
 import AuthContext from "./store/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ALL_LINKS } from "./constants/navigation-routes";
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from "react-query";
 import { useSelector } from "react-redux";
 const App = () => {
   const [loading, setLoading] = useState(true);
   const { isAuthenticated, role, user } = useSelector((state) => state.user);
   const queryClient = new QueryClient();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 2000);
   }, []);
 
-  useEffect(() => {
-    if (isAuthenticated)
-      navigate(user.lastPageVisited || '/page-2')
-  }, [isAuthenticated])
+  // useEffect(() => {
+  //   if (isAuthenticated) navigate(user.lastPageVisited || "/page-2");
+  // }, [isAuthenticated]);
 
   const PAGES = [
     ALL_LINKS.Landing,
@@ -32,11 +37,11 @@ const App = () => {
     ALL_LINKS.LoginPage5,
     ALL_LINKS.LoginPage6,
     ALL_LINKS.LoginPage7,
+    ALL_LINKS.Chat,
+    ALL_LINKS.UserChat,
   ];
 
-
   return (
-
     <QueryClientProvider client={queryClient}>
       <div id="" className="relative min-h-[100vh]">
         <div className="">
@@ -79,7 +84,6 @@ const App = () => {
         {/* <Footer/> */}
       </div>
     </QueryClientProvider>
-
   );
 };
 

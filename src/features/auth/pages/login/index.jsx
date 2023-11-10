@@ -1,21 +1,23 @@
-import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
 import { Field, Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { assets } from "../../../../assets";
-import * as yup from "yup";
 import { toast } from "react-toastify";
-import useApiMutation from "../../../../hooks/useApiMutation";
-import agent from "../../../../services/agent";
+import * as yup from "yup";
+import { assets } from "../../../../assets";
 import InputField from "../../../../components/forms/InputField";
+import useApiMutation from "../../../../hooks/useApiMutation";
+import { login } from "../../../../redux/userSlice";
+import agent from "../../../../services/agent";
 
 const LoginPage7 = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
-    agent.Auth.login,
+    agent.Auth.login
   );
   const [userType, setUserType] = useState("user");
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const initialValues = {
     email: "",
@@ -33,6 +35,15 @@ const LoginPage7 = () => {
   useEffect(() => {
     if (isSuccess && data) {
       // toast.success(data.message);
+      dispatch(
+        login({
+          isAuthenticated: true,
+          user: data.user,
+          token: data.token,
+          id: data.user._id,
+          role: data.user.role,
+        })
+      );
       navigate("/dashboard");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;

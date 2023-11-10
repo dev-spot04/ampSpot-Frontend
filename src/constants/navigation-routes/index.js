@@ -1,4 +1,5 @@
 import { lazy } from "react";
+
 const Landing = lazy(() => import("../../pages/landing"));
 const LoginPage1 = lazy(() => import("../../features/auth/pages/register"));
 const LoginPage2 = lazy(() => import("../../features/auth/pages/page-2"));
@@ -7,6 +8,9 @@ const LoginPage4 = lazy(() => import("../../features/auth/pages/page-4"));
 const LoginPage5 = lazy(() => import("../../features/auth/pages/page-5"));
 const LoginPage6 = lazy(() => import("../../features/auth/pages/page-6"));
 const LoginPage7 = lazy(() => import("../../features/auth/pages/login"));
+const Chat = lazy(() => import("../../features/auth/pages/chat"));
+const UserChat = lazy(() => import("../../features/auth/pages/user-chat"));
+
 export const ALL_LINKS = {
   Landing: {
     pageLink: "/",
@@ -89,6 +93,28 @@ export const ALL_LINKS = {
     pageLink: "/login",
     view: LoginPage7,
     displayName: "LoginPage7",
+    show: {
+      dj: true,
+      user: true,
+      null: true,
+    },
+    loginRequire: false,
+  },
+  Chat: {
+    pageLink: "/chat/conversations",
+    view: Chat,
+    displayName: "Chat",
+    show: {
+      dj: true,
+      user: true,
+      null: true,
+    },
+    loginRequire: false,
+  },
+  UserChat: {
+    pageLink: "/chat/start",
+    view: UserChat,
+    displayName: "User Chat",
     show: {
       dj: true,
       user: true,
