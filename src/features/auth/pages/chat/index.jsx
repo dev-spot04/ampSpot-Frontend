@@ -9,7 +9,7 @@ import CopyToClipboard from "react-copy-to-clipboard";
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const APP_ID = process.env.SEND_BIRD_CHAT_API_KEY;
+const APP_ID = process.env.REACT_APP_SEND_BIRD_CHAT_API_KEY;
 
 const sb = SendbirdChat.init({
   appId: APP_ID,
