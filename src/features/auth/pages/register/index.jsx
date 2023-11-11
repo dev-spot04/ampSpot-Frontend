@@ -21,11 +21,11 @@ import InputField from "../../../../components/forms/InputField";
 const LoginPage1 = () => {
   const navigate = useNavigate();
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
-    agent.Auth.register,
+    agent.Auth.register
   );
   const dispatch = useDispatch();
   const { isAuthenticated } = useSelector((state) => state.user);
-  const [userType, setUserType] = useState("user");
+  const [userType, setUserType] = useState("dj");
   const initialValues = {
     firstName: "",
     email: "",
@@ -54,7 +54,7 @@ const LoginPage1 = () => {
           token: data.token,
           id: data.user._id,
           role: data.user.role,
-        }),
+        })
       );
       navigate("/page-2");
     } else if (isError) {
@@ -91,6 +91,26 @@ const LoginPage1 = () => {
               {(props) => {
                 return (
                   <Form className="flex flex-col text-[#C8D6EF] 2xl:gap-4 gap-2">
+                    <div className="flex gap-2 bg-blue-50/10 p-1 w-[200px] 2xl:w-[250px] 2xl:h-[60px] rounded 2xl:my-7 my-2">
+                      <button
+                        type="button"
+                        className={`${
+                          userType === "user" ? "bg-blue1" : ""
+                        } p-1 w-1/2 rounded`}
+                        onClick={() => setUserType("user")}
+                      >
+                        User
+                      </button>
+                      <button
+                        type="button"
+                        className={`${
+                          userType === "dj" ? "bg-blue1" : ""
+                        } p-1 w-1/2 rounded`}
+                        onClick={() => setUserType("dj")}
+                      >
+                        DJ
+                      </button>
+                    </div>
                     <InputField
                       label={"Name"}
                       type="text"

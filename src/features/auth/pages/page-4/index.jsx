@@ -38,7 +38,7 @@ const LoginPage4 = () => {
           ...data.user
         }
       }))
-      navigate("/dashboard");
+      navigate("/chat/conversations");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);

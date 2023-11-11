@@ -44,7 +44,7 @@ const LoginPage7 = () => {
           role: data.user.role,
         })
       );
-      navigate("/dashboard");
+      navigate("/chat/conversations");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
@@ -76,26 +76,6 @@ const LoginPage7 = () => {
               {(props) => {
                 return (
                   <Form className="flex flex-col md:w-[80%]">
-                    <div className="flex gap-2 bg-blue-50/10 p-1 w-[200px] 2xl:w-[250px] 2xl:h-[60px] rounded 2xl:my-7 my-2">
-                      <button
-                        type="button"
-                        className={`${
-                          userType === "user" ? "bg-blue1" : ""
-                        } p-1 w-1/2 rounded`}
-                        onClick={() => setUserType("user")}
-                      >
-                        User
-                      </button>
-                      <button
-                        type="button"
-                        className={`${
-                          userType === "dj" ? "bg-blue1" : ""
-                        } p-1 w-1/2 rounded`}
-                        onClick={() => setUserType("dj")}
-                      >
-                        DJ
-                      </button>
-                    </div>
                     <InputField
                       label={"Email"}
                       type="text"
