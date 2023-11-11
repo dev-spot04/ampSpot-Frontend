@@ -32,7 +32,7 @@ const UserChat = () => {
     message: "",
   };
 
-  const createChannel = async (email) => {
+  const createChannel = async (email, message) => {
     const params = {
       invitedUserIds: [email, inviteEmail],
       operatorUserIds: [email, inviteEmail],
@@ -40,7 +40,7 @@ const UserChat = () => {
     };
     try {
       const channel = await sb.groupChannel.createChannel(params);
-      channel.sendUserMessage({ message: "Hi" });
+      channel.sendUserMessage({ message });
       return channel;
     } catch (err) {
       throw err;
@@ -61,7 +61,7 @@ const UserChat = () => {
     sb.connect(values.email)
       .then((res) => {
         sb.updateCurrentUserInfo({ nickname: values.name });
-        createChannel(values.email)
+        createChannel(values.email, values.message)
           .then((res) => {
             console.log(res);
             navigate(`/chat/conversations?userId=${values.email}`);
