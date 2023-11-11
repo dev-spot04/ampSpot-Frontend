@@ -12,7 +12,7 @@ import SendbirdChat from "@sendbird/chat";
 import { GroupChannelModule } from "@sendbird/chat/groupChannel";
 import { toast } from "react-toastify";
 
-const APP_ID = "108A5EEA-8071-41B6-BDC9-742663BBF96B";
+const APP_ID = process.env.SEND_BIRD_CHAT_API_KEY;
 
 const sb = SendbirdChat.init({
   appId: APP_ID,
