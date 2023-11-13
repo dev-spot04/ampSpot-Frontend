@@ -39,6 +39,7 @@ const App = () => {
     ALL_LINKS.LoginPage7,
     ALL_LINKS.Chat,
     ALL_LINKS.UserChat,
+    ALL_LINKS.Dashboard,
   ];
 
   return (

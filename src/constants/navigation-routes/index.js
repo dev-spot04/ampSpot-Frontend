@@ -8,9 +8,13 @@ const LoginPage4 = lazy(() => import("../../features/auth/pages/page-4"));
 const LoginPage5 = lazy(() => import("../../features/auth/pages/page-5"));
 const LoginPage6 = lazy(() => import("../../features/auth/pages/page-6"));
 const LoginPage7 = lazy(() => import("../../features/auth/pages/login"));
+<<<<<<< HEAD
 const Chat = lazy(() => import("../../features/auth/pages/chat"));
 const UserChat = lazy(() => import("../../features/auth/pages/user-chat"));
 
+=======
+const Dashboard = lazy(() => import("../../pages/dashboard"));
+>>>>>>> aryan-module-I
 export const ALL_LINKS = {
   Landing: {
     pageLink: "/",
@@ -115,6 +119,17 @@ export const ALL_LINKS = {
     pageLink: "/chat/start",
     view: UserChat,
     displayName: "User Chat",
+    show: {
+      dj: true,
+      user: true,
+      null: true,
+    },
+    loginRequire: false,
+  },
+  Dashboard: {
+    pageLink: "/dashboard",
+    view: Dashboard,
+    displayName: "Dashboard",
     show: {
       dj: true,
       user: true,
