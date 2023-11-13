@@ -32,6 +32,7 @@ const App = () => {
     ALL_LINKS.LoginPage5,
     ALL_LINKS.LoginPage6,
     ALL_LINKS.LoginPage7,
+    ALL_LINKS.Dashboard,
   ];
 
 

@@ -3,7 +3,7 @@ import React from "react";
 
 const Event = ({ event, tags, date, time, tab }) => {
   return (
-    <div className="bg-[#0D1322] rounded-lg flex flex-col gap-4 justify-center p-4 min-w-[15rem]">
+    <div className="bg-[#0D1322] rounded-lg flex flex-col gap-4 justify-center p-4 w-full">
       <h3 className="2xl:text-2xl text-lg font-bold">{event}</h3>
       <div className="flex gap-[2%]">
         {tags.map((tag, i) => (

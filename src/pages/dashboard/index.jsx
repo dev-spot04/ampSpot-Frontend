@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Drawer from "../../components/drawer";
 import Event from "./components/Event";
 import State from "./components/State";
 
@@ -18,11 +19,17 @@ const Dashboard = () => {
     "Contract Pending",
     "Contract Signed",
   ];
+  // prettier-ignore
   const event_list = [ { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, ];
   return (
-    <main className="bg-background min-h-screen flex gap-2 text-white">
-      <section className="w-1/6 md:block hidden">Left Area</section>
-      <section className="md:w-5/6 px-2 w-full">
+    // <main className="bg-background min-h-screen flex gap-2 text-white">
+    <main className="bg-background min-h-screen md:grid md:grid-cols-4 2xl:grid-cols-5 text-white">
+      {/* <section className="w-1/6 md:block hidden"> */}
+      <section className="w-full md:block hidden">
+        <Drawer />
+      </section>
+      {/* <section className="md:w-5/6 px-2 w-full"> */}
+      <section className="px-2 w-full col-span-3 2xl:col-span-4">
         <header className="2xl:h-24 h-16 flex justify-between items-center px-5">
           <h1 className="2xl:text-3xl text-xl">Dashboard</h1>
         </header>

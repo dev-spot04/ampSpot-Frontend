@@ -7,6 +7,7 @@ const LoginPage4 = lazy(() => import("../../features/auth/pages/page-4"));
 const LoginPage5 = lazy(() => import("../../features/auth/pages/page-5"));
 const LoginPage6 = lazy(() => import("../../features/auth/pages/page-6"));
 const LoginPage7 = lazy(() => import("../../features/auth/pages/login"));
+const Dashboard = lazy(() => import("../../pages/dashboard"));
 export const ALL_LINKS = {
   Landing: {
     pageLink: "/",
@@ -89,6 +90,17 @@ export const ALL_LINKS = {
     pageLink: "/login",
     view: LoginPage7,
     displayName: "LoginPage7",
+    show: {
+      dj: true,
+      user: true,
+      null: true,
+    },
+    loginRequire: false,
+  },
+  Dashboard: {
+    pageLink: "/dashboard",
+    view: Dashboard,
+    displayName: "Dashboard",
     show: {
       dj: true,
       user: true,
