@@ -29,7 +29,7 @@ const Event = ({ event, tags, date, time, tab }) => {
       <div className="flex justify-between 2xl:text-sm text-xs">
         <button
           type="button"
-          className="hover:bg-blue1 border border-blue1/40 rounded-md w-28 flex justify-center items-center gap-1"
+          className="hover:bg-blue1 border border-blue1/40 rounded-md min-w-[5.4rem] flex justify-center items-center gap-1"
         >
           Details
           <ArrowRightAlt sx={{ fontSize: "25px" }} />

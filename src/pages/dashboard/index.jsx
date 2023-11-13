@@ -1,7 +1,9 @@
 import React from "react";
 import { useState } from "react";
+import DashboardHeader from "../../components/dashboardHeader";
 import Drawer from "../../components/drawer";
 import Event from "./components/Event";
+import RightArea from "./components/RightArea";
 import State from "./components/State";
 
 const Dashboard = () => {
@@ -30,11 +32,11 @@ const Dashboard = () => {
       </section>
       {/* <section className="md:w-5/6 px-2 w-full"> */}
       <section className="px-2 w-full col-span-3 2xl:col-span-4">
-        <header className="2xl:h-24 h-16 flex justify-between items-center px-5">
+        <DashboardHeader>
           <h1 className="2xl:text-3xl text-xl">Dashboard</h1>
-        </header>
+        </DashboardHeader>
         <section className="flex gap-1">
-          <section className="md:w-5/6 w-full md:pr-7 px-5">
+          <section className="md:w-[74%] w-full md:pr-7 px-5">
             <div className="rounded-2xl px-7 py-4 bg-[#0052FF] flex flex-col gap-5">
               <div>
                 <p className="2xl:text-3xl text-xl font-bold">
@@ -97,7 +99,9 @@ const Dashboard = () => {
               ))}
             </div>
           </section>
-          <section className="w-1/6 md:block hidden">Right Area</section>
+          <section className="w-[24%] md:block hidden">
+            <RightArea balance={129389.0} />
+          </section>
         </section>
       </section>
     </main>

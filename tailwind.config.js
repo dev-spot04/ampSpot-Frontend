@@ -7,6 +7,7 @@ module.exports = {
         background: "#0A0F1B",
         border: "#223B6A",
         blue1: "#0086FF",
+        blue2: "#0D1322",
         black1: "#3A3A3A",
         inputText: "#618BCF",
         lightBlue: "#98B3E1",
