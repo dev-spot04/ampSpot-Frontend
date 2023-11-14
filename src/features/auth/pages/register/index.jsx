@@ -56,7 +56,7 @@ const LoginPage1 = () => {
           role: data.user.role,
         })
       );
-      navigate("/page-2");
+      navigate("/plug");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
@@ -164,7 +164,7 @@ const LoginPage1 = () => {
                       Register Now
                     </button>
                     {/* <Link
-                      to="/page-2"
+                      to="/plug"
                       className="text-center bg-[#25437F] p-2 rounded my-3"
                     >
                       Sign up with Google

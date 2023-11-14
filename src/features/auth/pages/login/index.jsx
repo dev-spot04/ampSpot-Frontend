@@ -9,8 +9,9 @@ import InputField from "../../../../components/forms/InputField";
 import useApiMutation from "../../../../hooks/useApiMutation";
 import { login } from "../../../../redux/userSlice";
 import agent from "../../../../services/agent";
+import { ALL_LINKS } from "../../../../constants/navigation-routes";
 
-const LoginPage7 = () => {
+const Login = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.login
   );
@@ -106,7 +107,17 @@ const LoginPage7 = () => {
                           Remember Me
                         </label>
                       </div>
-                      <p className="text-blue-500">Forgot password?</p>
+                      <button type="button" onClick={
+                        () => {
+                          console.log(props.values.email)
+                          if(props.values.email){
+                            navigate(ALL_LINKS.ForgotPassword.pageLink+'?email='+props.values.email);
+                          }
+                          else{
+                            toast.error("Please enter your email first");
+                          }
+                        }
+                      } className="text-blue-500">Forgot password?</button>
                     </div>
                     <button
                       className="text-center p-2 rounded bg-blue1 my-3 mt-5 2xl:h-[50px]"
@@ -151,4 +162,4 @@ const LoginPage7 = () => {
   );
 };
 
-export default LoginPage7;
+export default Login;

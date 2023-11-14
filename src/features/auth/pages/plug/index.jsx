@@ -8,7 +8,7 @@ import useApiMutation from "../../../../hooks/useApiMutation";
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../../../redux/userSlice";
-const LoginPage2 = () => {
+const Plug = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.update,
   );
@@ -40,12 +40,12 @@ const LoginPage2 = () => {
   const nextHandler = () => {
     const query = `?email=${user.email}`
     mutate(musicLinks, query)
-    // navigate("/page-3");
+    // navigate("/set-sound");
   };
   const skipHandler = () => {
     const query = `?email=${user.email}`
     mutate({}, query)
-    navigate("/page-3");
+    navigate("/set-sound");
   };
   const backHandler = () => {
     navigate("/register");
@@ -60,7 +60,7 @@ const LoginPage2 = () => {
           ...data.user
         }
       }))
-      navigate("/page-3");
+      navigate("/set-sound");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
@@ -143,7 +143,7 @@ const LoginPage2 = () => {
             <div className="grid grid-cols-2 w-full gap-2 2xl:h-[70px]">
               <button
                 type="button"
-                to="/page-3"
+                to="/set-sound"
                 className="text-center p-3 rounded w-full"
                 onClick={skipHandler}
               >
@@ -151,7 +151,7 @@ const LoginPage2 = () => {
               </button>
               <button
                 type="button"
-                to="/page-3"
+                to="/set-sound"
                 className="text-center bg-blue1 p-3 rounded w-full hover:bg-blue1/95 2xl:h-[70px]"
                 onClick={nextHandler}
               >
@@ -196,4 +196,4 @@ const LoginPage2 = () => {
   );
 };
 
-export default LoginPage2;
+export default Plug;

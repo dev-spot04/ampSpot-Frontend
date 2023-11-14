@@ -3,21 +3,21 @@ import { lazy } from "react";
 import DjProfile from "../../pages/djProfile";
 
 const Landing = lazy(() => import("../../pages/landing"));
-const LoginPage1 = lazy(() => import("../../features/auth/pages/register"));
-const LoginPage2 = lazy(() => import("../../features/auth/pages/page-2"));
-const LoginPage3 = lazy(() => import("../../features/auth/pages/page-3"));
-const LoginPage4 = lazy(() => import("../../features/auth/pages/page-4"));
-const LoginPage5 = lazy(() => import("../../features/auth/pages/page-5"));
-const LoginPage6 = lazy(() => import("../../features/auth/pages/page-6"));
-const LoginPage7 = lazy(() => import("../../features/auth/pages/login"));
+const Register = lazy(() => import("../../features/auth/pages/register"));
+const Plug = lazy(() => import("../../features/auth/pages/plug"));
+const SetSound = lazy(() => import("../../features/auth/pages/set-sound"));
+const SetProfile = lazy(() => import("../../features/auth/pages/set-profile"));
+const VerificationEmail = lazy(() => import("../../features/auth/pages/verification-email"));
+const Verified = lazy(() => import("../../features/auth/pages/verified"));
+const Login = lazy(() => import("../../features/auth/pages/login"));
 const Chat = lazy(() => import("../../features/auth/pages/chat"));
 const UserChat = lazy(() => import("../../features/auth/pages/user-chat"));
-
+const ForgotPassword = lazy(() => import("../../features/auth/pages/forgot-passowrd"));
 const Dashboard = lazy(() => import("../../pages/dashboard"));
 export const ALL_LINKS = {
   Landing: {
     pageLink: "/",
-    view: LoginPage1,
+    view: Register,
     displayName: "Landing",
     show: {
       dj: true,
@@ -26,10 +26,10 @@ export const ALL_LINKS = {
     },
     loginRequire: false,
   },
-  LoginPage1: {
+  Register: {
     pageLink: "/register",
-    view: LoginPage1,
-    displayName: "LoginPage1",
+    view: Register,
+    displayName: "Register",
     show: {
       dj: true,
       user: true,
@@ -37,10 +37,10 @@ export const ALL_LINKS = {
     },
     loginRequire: false,
   },
-  LoginPage2: {
-    pageLink: "/page-2",
-    view: LoginPage2,
-    displayName: "LoginPage2",
+  Plug: {
+    pageLink: "/plug",
+    view: Plug,
+    displayName: "Plug",
     show: {
       dj: true,
       user: true,
@@ -48,10 +48,10 @@ export const ALL_LINKS = {
     },
     loginRequire: true,
   },
-  LoginPage3: {
-    pageLink: "/page-3",
-    view: LoginPage3,
-    displayName: "LoginPage3",
+  SetSound: {
+    pageLink: "/set-sound",
+    view: SetSound,
+    displayName: "SetSound",
     show: {
       dj: true,
       user: true,
@@ -59,10 +59,10 @@ export const ALL_LINKS = {
     },
     loginRequire: true,
   },
-  LoginPage4: {
-    pageLink: "/page-4",
-    view: LoginPage4,
-    displayName: "LoginPage4",
+  SetProfile: {
+    pageLink: "/set-profile",
+    view: SetProfile,
+    displayName: "Set Profile",
     show: {
       dj: true,
       user: true,
@@ -70,10 +70,10 @@ export const ALL_LINKS = {
     },
     loginRequire: true,
   },
-  LoginPage5: {
-    pageLink: "/page-5",
-    view: LoginPage5,
-    displayName: "LoginPage5",
+  VerificationEmail: {
+    pageLink: "/verification-email",
+    view: VerificationEmail,
+    displayName: "VerificationEmail",
     show: {
       dj: true,
       user: true,
@@ -81,10 +81,10 @@ export const ALL_LINKS = {
     },
     loginRequire: true,
   },
-  LoginPage6: {
-    pageLink: "/page-6",
-    view: LoginPage6,
-    displayName: "LoginPage6",
+  Verified: {
+    pageLink: "/verified",
+    view: Verified,
+    displayName: "Verified",
     show: {
       dj: true,
       user: true,
@@ -92,10 +92,21 @@ export const ALL_LINKS = {
     },
     loginRequire: true,
   },
-  LoginPage7: {
+  Login: {
     pageLink: "/login",
-    view: LoginPage7,
-    displayName: "LoginPage7",
+    view: Login,
+    displayName: "Login",
+    show: {
+      dj: true,
+      user: true,
+      null: true,
+    },
+    loginRequire: false,
+  },
+  ForgotPassword: {
+    pageLink: "/forgot-password",
+    view: ForgotPassword,
+    displayName: "Forgot Password",
     show: {
       dj: true,
       user: true,

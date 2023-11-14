@@ -21,26 +21,27 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 200);
   }, []);
 
   // useEffect(() => {
-  //   if (isAuthenticated) navigate(user.lastPageVisited || "/page-2");
+  //   if (isAuthenticated) navigate(user.lastPageVisited || "/plug");
   // }, [isAuthenticated]);
 
   const PAGES = [
     ALL_LINKS.Landing,
-    ALL_LINKS.LoginPage1,
-    ALL_LINKS.LoginPage2,
-    ALL_LINKS.LoginPage3,
-    ALL_LINKS.LoginPage4,
-    ALL_LINKS.LoginPage5,
-    ALL_LINKS.LoginPage6,
-    ALL_LINKS.LoginPage7,
+    ALL_LINKS.Register,
+    ALL_LINKS.Plug,
+    ALL_LINKS.SetSound,
+    ALL_LINKS.SetProfile,
+    ALL_LINKS.VerificationEmail,
+    ALL_LINKS.Verified,
+    ALL_LINKS.Login,
     ALL_LINKS.Chat,
     ALL_LINKS.UserChat,
     ALL_LINKS.Dashboard,
     ALL_LINKS.DjProfile,
+    ALL_LINKS.ForgotPassword
   ];
 
   return (

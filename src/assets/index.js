@@ -1,5 +1,5 @@
 import AuthRegistration from "./auth-registration.jpg";
-import AuthMail from "./auth-mail.svg";
+import AuthMail from "./auth/others/mail.png";
 import bg_1 from "./auth/backgrounds/bg_1.png";
 import bg_2 from "./auth/backgrounds/bg_2.png";
 import bg_3 from "./auth/backgrounds/bg_3.png";

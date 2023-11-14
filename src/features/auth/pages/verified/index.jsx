@@ -1,37 +1,26 @@
-import {
-  ChevronLeft,
-  ChevronRight,
-  Facebook,
-  Instagram,
-  Star,
-  YouTube,
-} from "@mui/icons-material";
+import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
 import React from "react";
+import { Link } from "react-router-dom";
 import { assets } from "../../../../assets";
 
-const LoginPage8 = () => {
-  const resendEmailHandler = () => {};
+const Verified = () => {
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10 min-h-screen">
-        <div className="flex justify-between items-center my-3 mx-auto md:w-[70%] w-[90%]">
-          <p className="text-xl font-bold">AMP Spot</p>
+        <div className="flex justify-between items-center my-3 md:w-[70%] w-[90%] mx-auto">
+          <p className="2xl:text-[30px] text-xl font-bold">AMP Spot</p>
         </div>
-        <div className="flex flex-col gap-3 md:w-[70%] w-[90%] justify-center m-auto p-7 2xl:text-[24px] text-black1">
-          <img src={assets.auth.Mail} alt="Mail" />
-          <p className="text-center text-white font-bold">
-            A reset link has been sent to john***@gmail.com.
+        <div className="flex flex-col gap-3 items-center m-auto w-[90%] md:w-[70%]">
+          <img src={assets.auth.Mail} alt="Mail" className="w-80" />
+          <p className="text-center 2xl:text-[24px] text-black1">
+            You've been verified
           </p>
-          <p className="text-center my-6">
-            Didn't receive an email?{" "}
-            <button
-              type="button"
-              className="text-blue1"
-              onClick={resendEmailHandler}
-            >
-              Resend link
-            </button>
-          </p>
+          <Link
+            to="/login"
+            className="bg-blue-500 w-40 text-center self-center rounded p-1 2xl:text-[20px]"
+          >
+            Continue
+          </Link>
         </div>
       </section>
       <section
@@ -69,4 +58,4 @@ const LoginPage8 = () => {
   );
 };
 
-export default LoginPage8;
+export default Verified;

@@ -7,7 +7,7 @@ import agent from "../../../../services/agent";
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../../../redux/userSlice";
-const LoginPage3 = () => {
+const SetSound = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.update,
   );
@@ -16,21 +16,36 @@ const LoginPage3 = () => {
   const dispatch = useDispatch()
   const [sounds, setSounds] = useState([
     { value: "Rock", selected: false },
-    { value: "Afrobeats", selected: false },
-    { value: "ASDf", selected: false },
-    { value: "dfghd", selected: false },
-    { value: "HipHop", selected: false },
-    { value: "Rocfjk", selected: false },
-    { value: "dhgd", selected: false },
-    { value: "asdfasdf", selected: false },
-    { value: "dfgh", selected: false },
-    { value: "sfdgs", selected: false },
-    { value: "dfghdf", selected: false },
-    { value: "hhfhfg", selected: false },
-    { value: "asdfsf", selected: false },
-    { value: "fasdfa", selected: false },
-    { value: "hjfghjf", selected: false },
-    { value: "asdfsd", selected: false },
+    { value: "Pop", selected: false },
+    { value: "Hip Hop", selected: false },
+    { value: "Electronic", selected: false },
+    { value: "Jazz", selected: false },
+    { value: "Classical", selected: false },
+    { value: "Country", selected: false },
+    { value: "R&B", selected: false },
+    { value: "Blues", selected: false },
+    { value: "Reggae", selected: false },
+    { value: "Metal", selected: false },
+    { value: "Folk", selected: false },
+    { value: "Indie", selected: false },
+    { value: "Alternative", selected: false },
+    { value: "Rap", selected: false },
+    { value: "Soul", selected: false },
+    { value: "Funk", selected: false },
+    { value: "Disco", selected: false },
+    { value: "Gospel", selected: false },
+    { value: "Punk", selected: false },
+    { value: "Latin", selected: false },
+    { value: "World", selected: false },
+    { value: "Reggaeton", selected: false },
+    { value: "Techno", selected: false },
+    { value: "House", selected: false },
+    { value: "Trance", selected: false },
+    { value: "Dance", selected: false },
+    { value: "Ambient", selected: false },
+    { value: "Chillout", selected: false },
+    { value: "Acoustic", selected: false },
+    { value: "Instrumental", selected: false },
   ]);
   useEffect(() => {
     setSounds((prev) => prev.map((item) =>
@@ -45,12 +60,12 @@ const LoginPage3 = () => {
   }, [user])
   const navigate = useNavigate();
   const backHandler = () => {
-    navigate("/page-2");
+    navigate("/plug");
   };
   const skipHandler = () => {
     const query = `?email=${user.email}`
     mutate({}, query);
-    navigate("/page-4");
+    navigate("/set-profile");
   };
   const nextHandler = () => {
     const query = `?email=${user.email}`
@@ -72,7 +87,7 @@ const LoginPage3 = () => {
           ...data.user
         }
       }))
-      navigate("/page-4");
+      navigate("/set-profile");
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
@@ -119,14 +134,14 @@ const LoginPage3 = () => {
             <button
               onClick={skipHandler}
               type="button"
-              to="/page-4"
+              to="/set-profile"
               className="text-center p-3 rounded w-full"
             >
               Skip
             </button>
             <button
               onClick={nextHandler}
-              to="/page-4"
+              to="/set-profile"
               className="text-center bg-blue-600 p-3 rounded w-full"
             >
               Next
@@ -169,4 +184,4 @@ const LoginPage3 = () => {
   );
 };
 
-export default LoginPage3;
+export default SetSound;

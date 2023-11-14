@@ -1,26 +1,40 @@
-import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
+import {
+  ChevronLeft,
+  ChevronRight,
+  Facebook,
+  Instagram,
+  Star,
+  YouTube,
+} from "@mui/icons-material";
 import React from "react";
-import { Link } from "react-router-dom";
 import { assets } from "../../../../assets";
+import { useLocation } from "react-router-dom";
 
-const LoginPage5 = () => {
+const VerificationEmail = () => {
+
+  const location=useLocation()
+  const queryParams=new URLSearchParams(location.search)
+  const email=queryParams.get("email")
+
+  const resendLinkHandler=async()=>{
+    console.log("Resend Link")
+  }
+
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10 min-h-screen">
-        <div className="flex justify-between items-center my-3 md:w-[70%] w-[90%] mx-auto">
-          <p className="2xl:text-[30px] text-xl font-bold">AMP Spot</p>
+        <div className="flex justify-between items-center my-3 mx-auto md:w-[70%] w-[90%]">
+          <p className="text-xl font-bold">AMP Spot</p>
         </div>
-        <div className="flex flex-col gap-3 items-center m-auto w-[90%] md:w-[70%]">
-          <img src={assets.auth.Mail} alt="Mail" className="w-[80%]" />
-          <p className="text-center 2xl:text-[24px] text-black1">
-            You've been verified
+        <div className="flex flex-col gap-3 md:w-[70%] w-[90%] justify-center m-auto p-7 2xl:text-[24px] text-black1">
+          <img src={assets.auth.Mail} className="w-80 mx-auto" alt="Mail" />
+          <p className="text-center">
+            A verification link has been sent to {email?.padStart(4,"*")}
           </p>
-          <Link
-            to="/login"
-            className="bg-blue-500 w-40 text-center self-center rounded p-1 2xl:text-[20px]"
-          >
-            Continue
-          </Link>
+          <p className="text-center my-6">
+            Didn't receive an email?{" "}
+            <button onClick={()=>resendLinkHandler()} className="text-blue1">Resend link</button>
+          </p>
         </div>
       </section>
       <section
@@ -58,4 +72,4 @@ const LoginPage5 = () => {
   );
 };
 
-export default LoginPage5;
+export default VerificationEmail;

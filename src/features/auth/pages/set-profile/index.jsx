@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../../../redux/userSlice";
 
-const LoginPage4 = () => {
+const SetProfile = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.update,
   );
@@ -47,10 +47,10 @@ const LoginPage4 = () => {
   const skipHandler = () => {
     const query = `?email=${user.email}`;
     mutate({}, query);
-    navigate("/page-5");
+    navigate("/verification-email");
   };
   const backHandler = () => {
-    navigate("/page-3");
+    navigate("/set-sound");
   };
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
@@ -117,7 +117,7 @@ const LoginPage4 = () => {
                   <div className="grid grid-cols-2 gap-2 my-10">
                     <button
                       onClick={skipHandler}
-                      to="/page-5"
+                      to="/verification-email"
                       className="text-center p-3 rounded w-full"
                     >
                       Skip
@@ -170,4 +170,4 @@ const LoginPage4 = () => {
   );
 };
 
-export default LoginPage4;
+export default SetProfile;
