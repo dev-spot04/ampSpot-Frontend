@@ -1,5 +1,7 @@
 import { lazy } from "react";
 
+import DjProfile from "../../pages/djProfile";
+
 const Landing = lazy(() => import("../../pages/landing"));
 const LoginPage1 = lazy(() => import("../../features/auth/pages/register"));
 const LoginPage2 = lazy(() => import("../../features/auth/pages/page-2"));
@@ -127,6 +129,17 @@ export const ALL_LINKS = {
     pageLink: "/dashboard",
     view: Dashboard,
     displayName: "Dashboard",
+    show: {
+      dj: true,
+      user: true,
+      null: true,
+    },
+    loginRequire: false,
+  },
+  DjProfile: {
+    pageLink: "/djprofile",
+    view: DjProfile,
+    displayName: "DjProfile",
     show: {
       dj: true,
       user: true,

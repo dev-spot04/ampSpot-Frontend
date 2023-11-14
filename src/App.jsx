@@ -40,6 +40,7 @@ const App = () => {
     ALL_LINKS.Chat,
     ALL_LINKS.UserChat,
     ALL_LINKS.Dashboard,
+    ALL_LINKS.DjProfile,
   ];
 
   return (
