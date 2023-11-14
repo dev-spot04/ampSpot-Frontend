@@ -5,6 +5,7 @@ import Drawer from "../../components/drawer";
 import Event from "./components/Event";
 import RightArea from "./components/RightArea";
 import State from "./components/State";
+import "../../styles/scrollbar.css";
 
 const Dashboard = () => {
   const quick_states = [
@@ -67,7 +68,7 @@ const Dashboard = () => {
                   <State {...state} key={"state_" + i} />
                 ))}
               </div>
-              <div className="flex my-8 border-b border-border/50 2xl:text-lg text-sm overflow-scroll gap-[5%]">
+              <div className="flex my-8 border-b border-border/50 2xl:text-lg text-sm overflow-x-scroll noScroll gap-[5%]">
                 {tab_list.map((tab, i) => (
                   <div
                     className="flex flex-col items-center gap-1 2xl:w-44 w-36"
