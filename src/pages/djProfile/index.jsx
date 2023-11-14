@@ -154,13 +154,23 @@ const DjProfile = () => {
                 <hr className="w-20 border-2 bg-blue1 border-blue1 my-2" />
               </h2>
 
-              <div className="bg-border/20 rounded-lg">
+              <div className="bg-border/20 rounded-lg my-7">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DateCalendar
+                    style={{ width: "100%" }}
                     sx={{
-                      ".MuiPickersCalendarHeader-root": {
-                        backgroundColor: "orange",
+                      ".MuiIconButton-root": { color: "white" },
+                      ".MuiTypography-root": { color: "white", width: "100%" },
+                      ".MuiPickersDay-root": { color: "white", width: "100%" },
+                      ".Mui-selected": {
+                        borderRadius: "3px",
+                        border: "1px solid #2C549D",
                       },
+                      ".MuiPickersDay-today": {
+                        border: "1px solid #2C549D",
+                        borderRadius: "3px",
+                      },
+                      ".MuiYearCalendar-root": { width: "100%" },
                     }}
                   />
                 </LocalizationProvider>
