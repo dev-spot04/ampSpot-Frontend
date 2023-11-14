@@ -15,6 +15,8 @@ import { assets } from "../../assets";
 import { Rating } from "@mui/material";
 import GigCard from "./components/GigCard";
 import GigCardSkeleton from "./components/GigCardSkeleton";
+import { DateCalendar, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const DjProfile = () => {
   const userProfile = [
@@ -151,6 +153,18 @@ const DjProfile = () => {
                 Availability
                 <hr className="w-20 border-2 bg-blue1 border-blue1 my-2" />
               </h2>
+
+              <div className="bg-border/20 rounded-lg">
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DateCalendar
+                    sx={{
+                      ".MuiPickersCalendarHeader-root": {
+                        backgroundColor: "orange",
+                      },
+                    }}
+                  />
+                </LocalizationProvider>
+              </div>
             </div>
             <div>
               <h2 className="2xl:text-lg w-fit text-center">

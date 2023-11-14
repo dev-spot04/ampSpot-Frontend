@@ -1,5 +1,13 @@
 import { Add, CreditCard } from "@mui/icons-material";
-import React from "react";
+import {
+  DateCalendar,
+  DesktopDatePicker,
+  LocalizationProvider,
+  MobileDatePicker,
+  pickersLayoutClasses,
+} from "@mui/x-date-pickers";
+import React, { useState } from "react";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const RightArea = ({ balance }) => {
   const cardIconSx = { fontSize: "2rem" };
@@ -34,7 +42,11 @@ const RightArea = ({ balance }) => {
         <h2 className="text-lightBlue 2xl:text-2xl text-lg font-bold">
           Availabilities
         </h2>
-        <div className="min-h-[16rem] 2xl:text-base text-xs">Calendar Here</div>
+        <div className="min-h-[16rem] 2xl:text-base text-xs overflow-x-scroll">
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <DateCalendar />
+          </LocalizationProvider>
+        </div>
         <hr className="border-lightBlue/10 border" />
         <h2 className="text-lightBlue 2xl:text-2xl text-lg font-bold my-5">
           Notifications
