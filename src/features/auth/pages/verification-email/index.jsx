@@ -6,19 +6,59 @@ import {
   Star,
   YouTube,
 } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect } from "react";
 import { assets } from "../../../../assets";
-import { useLocation } from "react-router-dom";
-
+import { useLocation, useNavigate } from "react-router-dom";
+import useApiMutation from "../../../../hooks/useApiMutation";
+import agent from "../../../../services/agent";
+import { toast } from "react-toastify";
 const VerificationEmail = () => {
+  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
+    agent.Auth.sendVerificationMail,
+  );
+  const navigate = useNavigate()
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const email = queryParams.get("email")
+  const token = queryParams.get("token")
+  const notSendMail = queryParams.get("notSendMail")
 
-  const location=useLocation()
-  const queryParams=new URLSearchParams(location.search)
-  const email=queryParams.get("email")
-
-  const resendLinkHandler=async()=>{
-    console.log("Resend Link")
+  const handleEmailVerification = async () => {
+    try {
+      const query = `?token=${token}`
+      await agent.Auth.verifyMail({}, query)
+    } catch (error) {
+      const errorMessage = error?.response?.data?.message || error.message;
+      if (errorMessage === 'Email is already verified') {
+        return navigate('/dashboard')
+      }
+      toast.error(errorMessage);
+    }
   }
+  useEffect(() => {
+    if (token) {
+      handleEmailVerification()
+    }
+    if (!email) {
+      toast.error('Email is required')
+    }
+    else if (!notSendMail)
+      mutate({ email })
+  }, [])
+  const resendLinkHandler = async () => {
+    await handleEmailVerification()
+  }
+  useEffect(() => {
+    if (isSuccess && data) {
+
+    } else if (isError) {
+      const errorMessage = error?.response?.data?.message || error.message;
+      if (errorMessage === 'Email is already verified') {
+        return navigate('/dashboard')
+      }
+      toast.error(errorMessage);
+    }
+  }, [isSuccess, isError, data, error]);
 
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
@@ -29,11 +69,11 @@ const VerificationEmail = () => {
         <div className="flex flex-col gap-3 md:w-[70%] w-[90%] justify-center m-auto p-7 2xl:text-[24px] text-black1">
           <img src={assets.auth.Mail} className="w-80 mx-auto" alt="Mail" />
           <p className="text-center">
-            A verification link has been sent to {email?.padStart(4,"*")}
+            A verification link has been sent to {email?.padStart(4, "*")}
           </p>
           <p className="text-center my-6">
             Didn't receive an email?{" "}
-            <button onClick={()=>resendLinkHandler()} className="text-blue1">Resend link</button>
+            <button onClick={() => resendLinkHandler()} className="text-blue1">Resend link</button>
           </p>
         </div>
       </section>

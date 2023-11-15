@@ -15,7 +15,11 @@ const Login = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.login
   );
-  const [userType, setUserType] = useState("user");
+  const { mutate: mutateForgotPassword, isLoading: forgotPasswordLoading, isSuccess: forgotPasswordSuccess, isError: forgotPasswordError, error: forgotPasswordErrorData, data: forgotPasswordData } = useApiMutation(
+    agent.Auth.forgotPasswordMail
+  );
+
+  const [userEmail, setUserEmail] = useState('');
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -35,7 +39,6 @@ const Login = () => {
 
   useEffect(() => {
     if (isSuccess && data) {
-      // toast.success(data.message);
       dispatch(
         login({
           isAuthenticated: true,
@@ -51,6 +54,21 @@ const Login = () => {
       toast.error(errorMessage);
     }
   }, [isSuccess, isError, data, error]);
+  useEffect(() => {
+    if (forgotPasswordSuccess && forgotPasswordData) {
+      navigate(ALL_LINKS.ForgotPassword.pageLink + '?email=' + userEmail);
+    } else if (forgotPasswordError) {
+      const errorMessage = forgotPasswordErrorData?.response?.data?.message || forgotPasswordErrorData.message;
+      toast.error(errorMessage);
+    }
+  }, [forgotPasswordSuccess, forgotPasswordError, forgotPasswordData, forgotPasswordErrorData]);
+  const handleForgotPassword = (email) => {
+    if (!email) {
+      return toast.error("Please enter email.");
+    }
+    setUserEmail(email)
+    mutateForgotPassword({ email })
+  };
 
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
@@ -107,17 +125,9 @@ const Login = () => {
                           Remember Me
                         </label>
                       </div>
-                      <button type="button" onClick={
-                        () => {
-                          console.log(props.values.email)
-                          if(props.values.email){
-                            navigate(ALL_LINKS.ForgotPassword.pageLink+'?email='+props.values.email);
-                          }
-                          else{
-                            toast.error("Please enter your email first");
-                          }
-                        }
-                      } className="text-blue-500">Forgot password?</button>
+                      <button type="button"
+                        onClick={() => handleForgotPassword(props.values.email)}
+                        className="text-blue-500">Forgot password?</button>
                     </div>
                     <button
                       className="text-center p-2 rounded bg-blue1 my-3 mt-5 2xl:h-[50px]"

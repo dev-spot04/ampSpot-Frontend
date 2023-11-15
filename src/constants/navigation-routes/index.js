@@ -14,6 +14,7 @@ const Chat = lazy(() => import("../../features/auth/pages/chat"));
 const UserChat = lazy(() => import("../../features/auth/pages/user-chat"));
 const ForgotPassword = lazy(() => import("../../features/auth/pages/forgot-passowrd"));
 const Dashboard = lazy(() => import("../../pages/dashboard"));
+const ConfirmPassword = lazy(() => import("../../features/auth/pages/page-9"))
 export const ALL_LINKS = {
   Landing: {
     pageLink: "/",
@@ -158,4 +159,15 @@ export const ALL_LINKS = {
     },
     loginRequire: false,
   },
+  ConfirmPassword: {
+    pageLink: '/reset-password',
+    view: ConfirmPassword,
+    displayName: 'ConfirmPassword',
+    show: {
+      dj: true,
+      user: true,
+      null: true,
+    },
+    loginRequire: false,
+  }
 };

@@ -9,6 +9,7 @@ import useApiMutation from "../../../../hooks/useApiMutation";
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { update } from "../../../../redux/userSlice";
+import { ALL_LINKS } from "../../../../constants/navigation-routes";
 
 const SetProfile = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
@@ -38,7 +39,9 @@ const SetProfile = () => {
           ...data.user
         }
       }))
-      navigate("/chat/conversations");
+      const query = `?email=${user.email}`;
+      // navigate("/chat/conversations");
+      navigate(ALL_LINKS.VerificationEmail.pageLink + query)
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
@@ -47,7 +50,6 @@ const SetProfile = () => {
   const skipHandler = () => {
     const query = `?email=${user.email}`;
     mutate({}, query);
-    navigate("/verification-email");
   };
   const backHandler = () => {
     navigate("/set-sound");

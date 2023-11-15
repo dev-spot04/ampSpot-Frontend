@@ -8,30 +8,45 @@ import { toast } from "react-toastify";
 import useApiMutation from "../../../../hooks/useApiMutation";
 import agent from "../../../../services/agent";
 import InputField from "../../../../components/forms/InputField";
+import { useLocation } from 'react-router-dom'
 
-const LoginPage9 = () => {
+const ChangePassword = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
-    agent.Auth.login,
+    agent.Auth.resetPassword,
   );
+  const location = useLocation();
   const navigate = useNavigate();
+  const [token, setToken] = useState('')
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    setToken(params.get('token'))
+  }, [location.search]);
 
   const initialValues = {
     password: "",
     confirmPassword: "",
+    email: "",
   };
   const validationSchema = yup.object({
     password: yup
       .string()
-      .min(6, "Should Have Atleast 6 Characters")
+      .min(6, "Should Have At Least 6 Characters")
       .required("Enter New Password"),
     confirmPassword: yup
       .string()
-      .min(6, "Should Have Atelast 6 Characters")
+      .oneOf([yup.ref('password'), null], 'Passwords must match')
+      .min(6, "Should Have At Least 6 Characters")
       .required("Confirm the new password"),
+    email: yup.string().email().required("Enter Your Email"),
   });
   const onSubmitHandler = (values) => {
+    if (!token) {
+      return toast.error('Token is missing')
+    }
     values = { ...values };
-    mutate(values);
+    const query = `?resetToken=${token}`
+    mutate(values, query);
   };
 
   useEffect(() => {
@@ -69,6 +84,15 @@ const LoginPage9 = () => {
               {(props) => {
                 return (
                   <Form className="flex flex-col md:w-[80%]">
+                    <InputField
+                      label="Email"
+                      type="email"
+                      uni="email"
+                      placeholder="Email"
+                      required={true}
+                      className={"placeholder:text-[#B9B9B9]"}
+                      {...props}
+                    />
                     <InputField
                       label="New Password"
                       type="password"
@@ -119,4 +143,4 @@ const LoginPage9 = () => {
   );
 };
 
-export default LoginPage9;
+export default ChangePassword;

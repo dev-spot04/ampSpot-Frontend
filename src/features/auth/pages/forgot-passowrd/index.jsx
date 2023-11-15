@@ -6,17 +6,34 @@ import {
   Star,
   YouTube,
 } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect } from "react";
 import { assets } from "../../../../assets";
 import { useLocation } from "react-router-dom";
-
+import useApiMutation from "../../../../hooks/useApiMutation";
+import { toast } from "react-toastify";
+import agent from "../../../../services/agent";
 const ForgotPassword = () => {
 
-  const location=useLocation()
-  const queryParams=new URLSearchParams(location.search)
-  const email=queryParams.get("email")
-
-  const resendEmailHandler = () => {};
+  const location = useLocation()
+  const queryParams = new URLSearchParams(location.search)
+  const email = queryParams.get("email")
+  const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
+    agent.Auth.forgotPasswordMail,
+  );
+  const resendEmailHandler = () => {
+    if (!email) {
+      return toast.error('Email missing')
+    }
+    mutate({ email })
+  };
+  useEffect(() => {
+    if (isSuccess && data) {
+      toast.success('A new mail has been sent.')
+    } else if (isError) {
+      const errorMessage = error?.response?.data?.message || error.message;
+      toast.error(errorMessage);
+    }
+  }, [isSuccess, isError, data, error]);
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
       <section className="flex flex-col gap-10 pb-10 min-h-screen">
