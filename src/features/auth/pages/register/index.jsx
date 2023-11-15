@@ -17,8 +17,9 @@ import useApiMutation from "../../../../hooks/useApiMutation";
 import { login } from "../../../../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import InputField from "../../../../components/forms/InputField";
+import LoginCheckerHOC from "../../../../hoc/LoginCheckerHOC";
 
-const LoginPage1 = () => {
+const Register = () => {
   const navigate = useNavigate();
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.register
@@ -225,4 +226,4 @@ const LoginPage1 = () => {
   );
 };
 
-export default LoginPage1;
+export default Register

@@ -18,6 +18,8 @@ import { Avatar, Divider, Menu, MenuItem, MenuList } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../../assets";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/userSlice";
 
 const DashboardHeader = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -38,6 +40,8 @@ const DashboardHeader = ({ children }) => {
     className: "relative",
   };
   const menuItemClass = "flex gap-3 items-center";
+
+  const dispatch = useDispatch();
   return (
     <header className="2xl:h-24 h-16 flex justify-between items-center px-5">
       {children}
@@ -113,7 +117,9 @@ const DashboardHeader = ({ children }) => {
               <Help {...navIconProps} />
               <p>Help</p>
             </MenuItem>
-            <MenuItem onClick={closeMenu} className={menuItemClass}>
+            <MenuItem onClick={()=>{
+              dispatch(logout())
+            }} className={menuItemClass}>
               <Logout {...navIconProps} />
               <p>Log Out</p>
             </MenuItem>

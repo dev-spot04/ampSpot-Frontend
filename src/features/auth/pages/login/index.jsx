@@ -10,6 +10,7 @@ import useApiMutation from "../../../../hooks/useApiMutation";
 import { login } from "../../../../redux/userSlice";
 import agent from "../../../../services/agent";
 import { ALL_LINKS } from "../../../../constants/navigation-routes";
+import LoginCheckerHOC from "../../../../hoc/LoginCheckerHOC";
 
 const Login = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
@@ -172,4 +173,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginCheckerHOC(Login);

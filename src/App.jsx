@@ -7,7 +7,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import SplashScreen from "./features/auth/pages/splash-screen";
-import AuthContext from "./store/AuthContext";
+import AuthContext from "./store/AuthContext"; 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ALL_LINKS } from "./constants/navigation-routes";
@@ -41,8 +41,7 @@ const App = () => {
     ALL_LINKS.UserChat,
     ALL_LINKS.Dashboard,
     ALL_LINKS.DjProfile,
-    ALL_LINKS.ForgotPassword,
-    ALL_LINKS.ConfirmPassword
+    ALL_LINKS.ForgotPassword
   ];
 
   return (
@@ -65,7 +64,7 @@ const App = () => {
                           isAuthenticated ? (
                             <item.view />
                           ) : (
-                            <Navigate to={"/"} />
+                            <Navigate to={ALL_LINKS.Login.pageLink} />
                           )
                         }
                       />

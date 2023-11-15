@@ -124,7 +124,7 @@ export const ALL_LINKS = {
       user: true,
       null: true,
     },
-    loginRequire: false,
+    loginRequire: true,
   },
   UserChat: {
     pageLink: "/chat/start",
@@ -135,7 +135,7 @@ export const ALL_LINKS = {
       user: true,
       null: true,
     },
-    loginRequire: false,
+    loginRequire: true,
   },
   Dashboard: {
     pageLink: "/dashboard",
@@ -146,7 +146,7 @@ export const ALL_LINKS = {
       user: true,
       null: true,
     },
-    loginRequire: false,
+    loginRequire: true,
   },
   DjProfile: {
     pageLink: "/djprofile",
@@ -157,7 +157,7 @@ export const ALL_LINKS = {
       user: true,
       null: true,
     },
-    loginRequire: false,
+    loginRequire: true,
   },
   ConfirmPassword: {
     pageLink: '/reset-password',
