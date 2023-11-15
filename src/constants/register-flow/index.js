@@ -1,7 +1,7 @@
 export const REGISTER_FLOW=[
     'verification-email',
     'verified',
-    'plugin',
+    'plug',
     'set-sound',
     'set-profile',
 ];

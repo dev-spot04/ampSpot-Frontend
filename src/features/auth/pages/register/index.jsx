@@ -18,6 +18,7 @@ import { login } from "../../../../redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import InputField from "../../../../components/forms/InputField";
 import LoginCheckerHOC from "../../../../hoc/LoginCheckerHOC";
+import { ALL_LINKS } from "../../../../constants/navigation-routes";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ const Register = () => {
   const validationSchema = yup.object({
     name: yup.string().required("Enter Your Name"),
     email: yup.string().required("Enter Your Email"),
-    password: yup.string().required("Enter Your Password"),
+    password: yup.string().required("Enter Your Password").min(8),
     tcAgree: yup.boolean().isTrue(),
   });
   const onSubmitHandler = async (values) => {
@@ -57,7 +58,7 @@ const Register = () => {
           role: data.user.role,
         })
       );
-      navigate("/plug");
+      navigate(ALL_LINKS.VerificationEmail.pageLink+'?email='+data.user.email)
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
@@ -135,7 +136,7 @@ const Register = () => {
                       placeholder="Enter Your Password"
                       required={true}
                       {...props}
-                      lengthWarning={true}
+                      // lengthWarning={true}
                     />
                     <div className="my-2 mb-8">
                       <div className="flex gap-2 text-xs 2xl:text-[16px]">

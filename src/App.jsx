@@ -7,15 +7,19 @@ import {
   useNavigate,
 } from "react-router-dom";
 import SplashScreen from "./features/auth/pages/splash-screen";
-import AuthContext from "./store/AuthContext"; 
+import AuthContext from "./store/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ALL_LINKS } from "./constants/navigation-routes";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { useSelector } from "react-redux";
+import agent from "./services/agent";
+import { update } from "./redux/userSlice";
 const App = () => {
   const [loading, setLoading] = useState(true);
-  const { isAuthenticated, role, user } = useSelector((state) => state.user);
+  const { isAuthenticated, role, user, id } = useSelector(
+    (state) => state.user
+  );
   const queryClient = new QueryClient();
   const navigate = useNavigate();
   useEffect(() => {
@@ -24,9 +28,28 @@ const App = () => {
     }, 200);
   }, []);
 
-  // useEffect(() => {
-  //   if (isAuthenticated) navigate(user.lastPageVisited || "/plug");
-  // }, [isAuthenticated]);
+
+  useEffect(() => {
+    const fetchUserProfile = async () => {
+      try {
+        const res = await agent.Auth.getUserProfile(id);
+        update({
+          user: res.data.user,
+        });
+
+        console.log(!!res.data.user.hasOnboarded, res.data.user.lastPageVisited)
+
+        if (!!res.data.user.hasOnboarded===false) {
+          navigate(res.data.user.lastPageVisited);
+        }
+
+        
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    if (isAuthenticated) fetchUserProfile();
+  }, [isAuthenticated]);
 
   const PAGES = [
     ALL_LINKS.Landing,
@@ -41,7 +64,7 @@ const App = () => {
     ALL_LINKS.UserChat,
     ALL_LINKS.Dashboard,
     ALL_LINKS.DjProfile,
-    ALL_LINKS.ForgotPassword
+    ALL_LINKS.ForgotPassword,
   ];
 
   return (

@@ -9,6 +9,7 @@ import {
 import React from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../../../../assets";
+import { ALL_LINKS } from "../../../../constants/navigation-routes";
 
 const Verified = () => {
   return (
@@ -32,7 +33,7 @@ const Verified = () => {
             You've been verified
           </p>
           <Link
-            to="/login"
+            to={ALL_LINKS.Plug.pageLink}
             className="bg-blue-500 w-40 text-center self-center rounded p-1 2xl:text-[20px]"
           >
             Continue

@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useApiMutation from "../../../../hooks/useApiMutation";
 import agent from "../../../../services/agent";
 import { toast } from "react-toastify";
+import { ALL_LINKS } from "../../../../constants/navigation-routes";
 const VerificationEmail = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
     agent.Auth.sendVerificationMail,
@@ -30,7 +31,7 @@ const VerificationEmail = () => {
     } catch (error) {
       const errorMessage = error?.response?.data?.message || error.message;
       if (errorMessage === 'Email is already verified') {
-        return navigate('/dashboard')
+        return navigate(ALL_LINKS.Verified.pageLink)
       }
       toast.error(errorMessage);
     }
@@ -54,7 +55,7 @@ const VerificationEmail = () => {
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       if (errorMessage === 'Email is already verified') {
-        return navigate('/dashboard')
+        return navigate(ALL_LINKS.Verified.pageLink)
       }
       toast.error(errorMessage);
     }

@@ -8,6 +8,7 @@ const Auth = {
     resetPassword: (data, query = '') => http.post(`/token/verify${query}`, data),
     sendVerificationMail: (data, query = '') => http.post(`/mail/send${query}`, data),
     verifyMail: (data, query = '') => http.get(`/mail/verify${query}`, data),
+    getUserProfile: ( params = '') => http.get(`/auth/getUserById/${params}`),
 }
 
 export default {

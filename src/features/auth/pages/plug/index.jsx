@@ -40,7 +40,7 @@ const Plug = () => {
   const nextHandler = () => {
     const query = `?email=${user.email}`
     mutate(musicLinks, query)
-    // navigate("/set-sound");
+    navigate("/set-sound");
   };
   const skipHandler = () => {
     const query = `?email=${user.email}`

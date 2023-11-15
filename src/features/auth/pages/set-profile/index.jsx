@@ -41,7 +41,7 @@ const SetProfile = () => {
       }))
       const query = `?email=${user.email}`;
       // navigate("/chat/conversations");
-      navigate(ALL_LINKS.VerificationEmail.pageLink + query)
+      navigate(ALL_LINKS.Dashboard.pageLink);
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
@@ -52,7 +52,7 @@ const SetProfile = () => {
     mutate({}, query);
   };
   const backHandler = () => {
-    navigate("/set-sound");
+    navigate(ALL_LINKS.SetSound.pageLink);
   };
   return (
     <main className="bg-background min-h-screen grid md:grid-cols-2 grid-cols-1 text-white">
