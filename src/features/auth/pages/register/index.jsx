@@ -227,4 +227,4 @@ const Register = () => {
   );
 };
 
-export default Register
+export default LoginCheckerHOC(Register)

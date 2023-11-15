@@ -65,6 +65,7 @@ const App = () => {
     ALL_LINKS.Dashboard,
     ALL_LINKS.DjProfile,
     ALL_LINKS.ForgotPassword,
+    ALL_LINKS.ConfirmPassword,
   ];
 
   return (

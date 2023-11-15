@@ -31,7 +31,7 @@ const Login = () => {
   };
   const validationSchema = yup.object({
     email: yup.string().email().required("Enter Your Email"),
-    password: yup.string().required("Enter Your Password"),
+    password: yup.string().required("Enter Your Password").min(6),
   });
   const onSubmitHandler = (values) => {
     values = { ...values };

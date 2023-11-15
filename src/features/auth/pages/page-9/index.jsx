@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import useApiMutation from "../../../../hooks/useApiMutation";
 import agent from "../../../../services/agent";
 import InputField from "../../../../components/forms/InputField";
-import { useLocation } from 'react-router-dom'
+import { useLocation } from "react-router-dom";
 
 const ChangePassword = () => {
   const { mutate, isLoading, isSuccess, isError, error, data } = useApiMutation(
@@ -16,11 +16,11 @@ const ChangePassword = () => {
   );
   const location = useLocation();
   const navigate = useNavigate();
-  const [token, setToken] = useState('')
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    setToken(params.get('token'))
+    setToken(params.get("token"));
   }, [location.search]);
 
   const initialValues = {
@@ -29,23 +29,20 @@ const ChangePassword = () => {
     email: "",
   };
   const validationSchema = yup.object({
-    password: yup
-      .string()
-      .min(6, "Should Have At Least 6 Characters")
-      .required("Enter New Password"),
+    password: yup.string().required("Ente New Password").min(6),
     confirmPassword: yup
       .string()
-      .oneOf([yup.ref('password'), null], 'Passwords must match')
+      .oneOf([yup.ref("password"), null], "Passwords must match")
       .min(6, "Should Have At Least 6 Characters")
       .required("Confirm the new password"),
     email: yup.string().email().required("Enter Your Email"),
   });
   const onSubmitHandler = (values) => {
     if (!token) {
-      return toast.error('Token is missing')
+      return toast.error("Token is missing");
     }
     values = { ...values };
-    const query = `?resetToken=${token}`
+    const query = `?resetToken=${token}`;
     mutate(values, query);
   };
 

@@ -7,7 +7,7 @@ import {
   StarRounded,
 } from "@mui/icons-material";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Drawer = () => {
   const [activeLink, setActiveLink] = useState("home");
@@ -17,6 +17,7 @@ const Drawer = () => {
   };
   const defaultLinkClass =
     "text-[#98B3E1] flex items-center gap-[10%] p-2 rounded-lg px-[10%] 2xl:text-base text-sm";
+  const activeLinkClass = "border-l-blue1 border-l-[0.2rem] bg-blue1/10";
   return (
     <div className="2xl:py-9 py-6">
       <div className="bg-blue1 w-16 h-16 rounded-full flex justify-center items-center relative m-auto">
@@ -28,34 +29,61 @@ const Drawer = () => {
         </div>
       </div>
       <div className="lg:w-4/5 w-[96%] relative mx-auto my-12 flex flex-col 2xl:gap-6 gap-2">
-        <Link
+        <NavLink
           to="/dashboard"
-          className={
-            defaultLinkClass +
+          className={({ isActive, isPending }) =>
+            (isPending ? "" : isActive ? activeLinkClass : "") +
             " " +
-            (activeLink === "home" &&
-              "border-l-blue1 border-l-[0.2rem] bg-blue1/10")
+            defaultLinkClass
           }
         >
           <HomeRounded {...navIconProps} />
           <p>Home</p>
-        </Link>
-        <Link to="/dashboard" className={defaultLinkClass}>
+        </NavLink>
+        <NavLink
+          className={({ isActive, isPending }) =>
+            (isPending ? "" : isActive ? activeLinkClass : "") +
+            " " +
+            defaultLinkClass
+          }
+          to="/bookings"
+        >
           <PersonAddAltRounded {...navIconProps} />
           <p>Bookings</p>
-        </Link>
-        <Link to="/dashboard" className={defaultLinkClass}>
+        </NavLink>
+        <NavLink
+          to="/availablity"
+          className={({ isActive, isPending }) =>
+            (isPending ? "" : isActive ? activeLinkClass : "") +
+            " " +
+            defaultLinkClass
+          }
+        >
           <EmojiEvents {...navIconProps} />
           <p>Availability</p>
-        </Link>
-        <Link to="/dashboard" className={defaultLinkClass}>
+        </NavLink>
+        <NavLink
+          className={({ isActive, isPending }) =>
+            (isPending ? "" : isActive ? activeLinkClass : "") +
+            " " +
+            defaultLinkClass
+          }
+          to="/documents"
+        >
           <HeartBrokenRounded {...navIconProps} />
           <p>Documents</p>
-        </Link>
-        <Link to="/dashboard" className={defaultLinkClass}>
+        </NavLink>
+        <NavLink
+          className={({ isActive, isPending }) =>
+            (isPending ? "" : isActive ? activeLinkClass : "") +
+            " " +
+            defaultLinkClass
+          }
+          to="/messages"
+        >
           <MessageRounded {...navIconProps} />
           <p>Messages</p>
-        </Link>
+        </NavLink>
         <hr className="border border-blue1/20 my-3" />
       </div>
       <div className="lg:w-4/5 w-[97%] relative mx-auto border border-blue1/10 rounded-lg p-3">

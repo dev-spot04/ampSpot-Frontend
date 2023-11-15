@@ -14,7 +14,7 @@ import {
   Settings,
   Star,
 } from "@mui/icons-material";
-import { Avatar, Divider, Menu, MenuItem, MenuList } from "@mui/material";
+import { Avatar, Divider, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../../assets";
@@ -117,9 +117,12 @@ const DashboardHeader = ({ children }) => {
               <Help {...navIconProps} />
               <p>Help</p>
             </MenuItem>
-            <MenuItem onClick={()=>{
-              dispatch(logout())
-            }} className={menuItemClass}>
+            <MenuItem
+              onClick={() => {
+                dispatch(logout());
+              }}
+              className={menuItemClass}
+            >
               <Logout {...navIconProps} />
               <p>Log Out</p>
             </MenuItem>
