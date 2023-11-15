@@ -29,27 +29,27 @@ const App = () => {
   }, []);
 
 
-  useEffect(() => {
-    const fetchUserProfile = async () => {
-      try {
-        const res = await agent.Auth.getUserProfile(id);
-        update({
-          user: res.data.user,
-        });
+  // useEffect(() => {
+  //   const fetchUserProfile = async () => {
+  //     try {
+  //       const res = await agent.Auth.getUserProfile(id);
+  //       update({
+  //         user: res.data.user,
+  //       });
 
-        console.log(!!res.data.user.hasOnboarded, res.data.user.lastPageVisited)
+  //       console.log(!!res.data.user.hasOnboarded, res.data.user.lastPageVisited)
 
-        if (!!res.data.user.hasOnboarded===false) {
-          navigate(res.data.user.lastPageVisited);
-        }
+  //       if (!!res.data.user.hasOnboarded===false) {
+  //         navigate(res.data.user.lastPageVisited);
+  //       }
 
         
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    if (isAuthenticated) fetchUserProfile();
-  }, [isAuthenticated]);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   if (isAuthenticated) fetchUserProfile();
+  // }, [isAuthenticated]);
 
   const PAGES = [
     ALL_LINKS.Landing,
