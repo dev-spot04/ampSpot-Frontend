@@ -44,7 +44,27 @@ const RightArea = ({ balance }) => {
         </h2>
         <div className="min-h-[16rem] 2xl:text-base text-xs overflow-x-scroll">
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <DateCalendar />
+            <DateCalendar
+              className="text-white"
+              sx={{
+                ".MuiPickersDay-root": {
+                  color: "#98B3E1",
+                  width: "100%",
+                  fontWeight: "600",
+                },
+                ".MuiTypography-root": {
+                  color: "#98B3E1",
+                  width: "100%",
+                  fontWeight: "600",
+                  borderBottom: "1px solid #98B3E1",
+                },
+                ".MuiButtonBase-root": { color: "#98B3E1", fontWeight: "600" },
+                ".MuiPickersDay-today": {
+                  border: "1px solid #223B6A",
+                  fontWeight: "600",
+                },
+              }}
+            />
           </LocalizationProvider>
         </div>
         <hr className="border-lightBlue/10 border" />

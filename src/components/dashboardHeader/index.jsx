@@ -1,16 +1,22 @@
 import {
   DarkMode,
   Edit,
+  EmojiEvents,
+  HeartBrokenRounded,
   Help,
+  HomeRounded,
   Logout,
   Menu as MenuIcon,
+  MessageRounded,
   Notifications,
   NotificationsActiveRounded,
+  PersonAddAltRounded,
   Settings,
   Star,
 } from "@mui/icons-material";
 import { Avatar, Divider, Menu, MenuItem, MenuList } from "@mui/material";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { assets } from "../../assets";
 
 const DashboardHeader = ({ children }) => {
@@ -26,7 +32,12 @@ const DashboardHeader = ({ children }) => {
   const notifyHandler = () => {
     setNotify(!notify);
   };
-  const sxIcons = { color: "#98B3E1" };
+
+  const navIconProps = {
+    sx: { fontSize: "1rem", top: "-1px" },
+    className: "relative",
+  };
+  const menuItemClass = "flex gap-3 items-center";
   return (
     <header className="2xl:h-24 h-16 flex justify-between items-center px-5">
       {children}
@@ -73,41 +84,82 @@ const DashboardHeader = ({ children }) => {
               },
             }}
           >
-            <MenuItem onClick={closeMenu} className="flex gap-3 items-center">
-              <Edit sx={{ fontSize: "1rem" }} />
+            <MenuItem onClick={closeMenu} className={menuItemClass}>
+              <Edit {...navIconProps} />
               <p>Profile</p>
             </MenuItem>
-            <MenuItem onClick={closeMenu} className="flex gap-3 items-center">
-              <Settings sx={{ fontSize: "1rem" }} />
+            <MenuItem onClick={closeMenu} className={menuItemClass}>
+              <Settings {...navIconProps} />
               <p>Settings</p>
             </MenuItem>
             <Divider
               sx={{
-                border: "0.5px solid #98B3E1",
+                border: "1px solid #98B3E1",
                 width: "88%",
                 position: "relative",
                 marginX: "auto",
                 opacity: "0.5",
               }}
             />
-            <MenuItem onClick={closeMenu} className="flex gap-3 items-center">
-              <Star sx={{ fontSize: "1rem" }} />
+            <MenuItem onClick={closeMenu} className={menuItemClass}>
+              <Star {...navIconProps} />
               <p>Go Pro</p>
             </MenuItem>
-            <MenuItem onClick={closeMenu} className="flex gap-3 items-center">
-              <DarkMode sx={{ fontSize: "1rem" }} />
+            <MenuItem onClick={closeMenu} className={menuItemClass}>
+              <DarkMode {...navIconProps} />
               <p>Dark Mode</p>
             </MenuItem>
-            <MenuItem onClick={closeMenu} className="flex gap-3 items-center">
-              <Help sx={{ fontSize: "1rem" }} />
+            <MenuItem onClick={closeMenu} className={menuItemClass}>
+              <Help {...navIconProps} />
               <p>Help</p>
             </MenuItem>
-            <MenuItem onClick={closeMenu} className="flex gap-3 items-center">
-              <Logout sx={{ fontSize: "1rem" }} />
+            <MenuItem onClick={closeMenu} className={menuItemClass}>
+              <Logout {...navIconProps} />
               <p>Log Out</p>
             </MenuItem>
+            <div className="md:hidden">
+              <Divider
+                sx={{
+                  border: "1px solid #98B3E1",
+                  width: "88%",
+                  position: "relative",
+                  marginX: "auto",
+                  opacity: "0.5",
+                  marginY: "0.5rem",
+                }}
+              />
+              <MenuItem onClick={closeMenu} className={menuItemClass}>
+                <Link to="/dashboard" className={menuItemClass}>
+                  <HomeRounded {...navIconProps} />
+                  <p>Home</p>
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={closeMenu} className={menuItemClass}>
+                <Link to="/dashboard" className={menuItemClass}>
+                  <PersonAddAltRounded {...navIconProps} />
+                  <p>Bookings</p>
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={closeMenu} className={menuItemClass}>
+                <Link to="/dashboard" className={menuItemClass}>
+                  <EmojiEvents {...navIconProps} />
+                  <p>Availability</p>
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={closeMenu} className={menuItemClass}>
+                <Link to="/dashboard" className={menuItemClass}>
+                  <HeartBrokenRounded {...navIconProps} />
+                  <p>Documents</p>
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={closeMenu} className={menuItemClass}>
+                <Link to="/dashboard" className={menuItemClass}>
+                  <MessageRounded {...navIconProps} />
+                  <p>Messages</p>
+                </Link>
+              </MenuItem>
+            </div>
           </Menu>
-
           <button type="button" className="w-7 rounded-full">
             <Avatar
               alt="Remy Sharp"

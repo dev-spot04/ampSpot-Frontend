@@ -1,4 +1,11 @@
-import { ChevronLeft, ChevronRight, Star } from "@mui/icons-material";
+import {
+  AutoAwesomeRounded,
+  CheckCircleRounded,
+  ChevronLeft,
+  ChevronRight,
+  GradeRounded,
+  Star,
+} from "@mui/icons-material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../../../../assets";
@@ -11,7 +18,16 @@ const Verified = () => {
           <p className="2xl:text-[30px] text-xl font-bold">AMP Spot</p>
         </div>
         <div className="flex flex-col gap-3 items-center m-auto w-[90%] md:w-[70%]">
-          <img src={assets.auth.Mail} alt="Mail" className="w-80" />
+          <div>
+            <GradeRounded className="relative top-16 right-5 text-blue1/50 rotate-12" />
+            <GradeRounded className="relative top-7 right-4 text-blue1/20 rotate-12 scale-75" />
+            <GradeRounded className="relative top-2 right-4 text-blue1/90 rotate-12 scale-110" />
+            <GradeRounded className="relative top-2 right-3 text-blue1/40 rotate-12 scale-50" />
+            <GradeRounded className="relative top-5 right-4 text-blue1/50 rotate-12 scale-90" />
+          </div>
+          <div className="bg-blue1 p-8 rounded-full relative">
+            <CheckCircleRounded sx={{ fontSize: "3rem" }} />
+          </div>
           <p className="text-center 2xl:text-[24px] text-black1">
             You've been verified
           </p>
