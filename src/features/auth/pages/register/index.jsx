@@ -58,7 +58,7 @@ const Register = () => {
           role: data.user.role,
         })
       );
-      navigate(ALL_LINKS.VerificationEmail.pageLink+'?email='+data.user.email)
+      navigate(ALL_LINKS.VerificationEmail.pageLink + '?email=' + data.user.email)
     } else if (isError) {
       const errorMessage = error?.response?.data?.message || error.message;
       toast.error(errorMessage);
@@ -96,18 +96,16 @@ const Register = () => {
                     <div className="flex gap-2 bg-blue-50/10 p-1 w-[200px] 2xl:w-[250px] 2xl:h-[60px] rounded 2xl:my-7 my-2">
                       <button
                         type="button"
-                        className={`${
-                          userType === "user" ? "bg-blue1" : ""
-                        } p-1 w-1/2 rounded`}
+                        className={`${userType === "user" ? "bg-blue1" : ""
+                          } p-1 w-1/2 rounded`}
                         onClick={() => setUserType("user")}
                       >
                         User
                       </button>
                       <button
                         type="button"
-                        className={`${
-                          userType === "dj" ? "bg-blue1" : ""
-                        } p-1 w-1/2 rounded`}
+                        className={`${userType === "dj" ? "bg-blue1" : ""
+                          } p-1 w-1/2 rounded`}
                         onClick={() => setUserType("dj")}
                       >
                         DJ
@@ -136,7 +134,7 @@ const Register = () => {
                       placeholder="Enter Your Password"
                       required={true}
                       {...props}
-                      // lengthWarning={true}
+                    // lengthWarning={true}
                     />
                     <div className="my-2 mb-8">
                       <div className="flex gap-2 text-xs 2xl:text-[16px]">
@@ -227,4 +225,4 @@ const Register = () => {
   );
 };
 
-export default LoginCheckerHOC(Register)
+export default Register

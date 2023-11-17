@@ -47,7 +47,7 @@ const VerificationEmail = () => {
       mutate({ email })
   }, [])
   const resendLinkHandler = async () => {
-    await handleEmailVerification()
+    mutate({ email })
   }
   useEffect(() => {
     if (isSuccess && data) {
