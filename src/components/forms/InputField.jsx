@@ -33,7 +33,7 @@ const InputField = ({
           {label}
         </label>
       )}
-      <div className="flex items-center justify-center my-1">
+      <div className={`${ props.errors[uni] && props.touched[uni] ? "border border-red-500" : "" } flex items-center justify-center my-1 border border-border/50 rounded-md focus-within:border-border`}>
         <Field
           type={
             type !== "password" || type === undefined
@@ -48,14 +48,8 @@ const InputField = ({
           required={required}
           className={
             (type === "text" || "password"
-              ? `${
-                  props.errors[uni] && props.touched[uni]
-                    ? "border border-red-500"
-                    : "border border-border/50"
-                } bg-background outline-none placeholder:text-inputText focus:border-border rounded-md 2xl:h-[51px] p-2 px-4 text-[14px] text-white w-full`
-              : "") +
-            " " +
-            className
+              ? `bg-background outline-none placeholder:text-inputText rounded-md 2xl:h-[51px] p-2 px-4 text-[14px] text-white w-full peer`
+              : "") + " " + className
           }
         />
         {type === "password" && passVisibility && (
