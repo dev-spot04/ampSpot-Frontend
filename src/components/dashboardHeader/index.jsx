@@ -18,8 +18,8 @@ import { Avatar, Divider, Menu, MenuItem } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { assets } from "../../assets";
-import { useDispatch } from "react-redux";
-import { logout } from "../../redux/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, toggleDarkMode } from "../../redux/userSlice";
 
 const DashboardHeader = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -42,6 +42,7 @@ const DashboardHeader = ({ children }) => {
   const menuItemClass = "flex gap-3 items-center";
 
   const dispatch = useDispatch();
+  const darkMode=useSelector(state=>state.user.darkMode)
   return (
     <header className="2xl:h-24 h-16 flex justify-between items-center px-5">
       {children}
@@ -111,7 +112,7 @@ const DashboardHeader = ({ children }) => {
             </MenuItem>
             <MenuItem onClick={closeMenu} className={menuItemClass}>
               <DarkMode {...navIconProps} />
-              <p>Dark Mode</p>
+              <button onClick={()=>dispatch(toggleDarkMode())}>{darkMode ? 'Light Mode' : 'Dark Mode'}</button>
             </MenuItem>
             <MenuItem onClick={closeMenu} className={menuItemClass}>
               <Help {...navIconProps} />

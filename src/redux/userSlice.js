@@ -29,6 +29,7 @@ const userSlice = createSlice({
         loading: false,
         role: null,
         error: null,
+        darkMode: localStorage.getItem('darkMode') === 'true' ? true : false,
     },
     reducers: {
         login: (state, action) => {
@@ -54,9 +55,13 @@ const userSlice = createSlice({
             state.error = null;
             saveStateToLocalStorage(state);
         },
+        toggleDarkMode: (state) => {
+            state.darkMode = !state.darkMode;
+            saveStateToLocalStorage(state);
+        },
     },
 });
 
-export const { login, logout, update } = userSlice.actions;
+export const { login, logout, update,toggleDarkMode } = userSlice.actions;
 
 export default userSlice.reducer;

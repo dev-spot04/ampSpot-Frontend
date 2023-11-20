@@ -25,20 +25,17 @@ const Dashboard = () => {
   // prettier-ignore
   const event_list = [ { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, ];
   return (
-    // <main className="bg-background min-h-screen flex gap-2 text-white">
-    <main className="bg-background min-h-screen md:grid md:grid-cols-4 2xl:grid-cols-5 text-white">
-      {/* <section className="w-1/6 md:block hidden"> */}
+    <main className="bg-[#F2F1F3]  dark:bg-background min-h-screen md:grid md:grid-cols-4 2xl:grid-cols-5 text-black dark:text-white">
       <section className="w-full md:block hidden">
         <Drawer />
       </section>
-      {/* <section className="md:w-5/6 px-2 w-full"> */}
       <section className="px-2 w-full col-span-3 2xl:col-span-4">
         <DashboardHeader>
           <h1 className="2xl:text-3xl text-xl">Dashboard</h1>
         </DashboardHeader>
         <section className="flex gap-1">
           <section className="md:w-[74%] w-full md:pr-7 px-5">
-            <div className="rounded-2xl px-7 py-4 bg-[#0052FF] flex flex-col gap-5">
+            <div className="rounded-2xl px-7 py-4 bg-[#0052FF] flex flex-col gap-5 text-white">
               <div>
                 <p className="2xl:text-3xl text-xl font-bold">
                   Welcome Back! MD Rakib
@@ -59,11 +56,11 @@ const Dashboard = () => {
                 <p className="2xl:text-xl font-bold">Quick States</p>
                 <input
                   type="text"
-                  className="bg-[#3D6DBA]/50 placeholder:text-[#98B3E1] 2xl:text-sm text-xs 2xl:p-2 p-1 border border-[#98B3E1] rounded-md 2xl:w-56 w-48 text-center"
+                  className="bg-[#EDEEF1] dark:bg-[#3D6DBA] text-black placeholder:text-black 2xl:text-sm text-xs 2xl:p-2 p-1 border border-[#98B3E1] rounded-md 2xl:w-56 w-48 text-center"
                   placeholder="20 August 2023-31 August 2023"
                 />
               </div>
-              <div className="lg:grid lg:grid-cols-4 flex flex-wrap gap-5">
+              <div className="lg:grid lg:grid-cols-4 flex flex-wrap gap-5 bg-inherit">
                 {quick_states.map((state, i) => (
                   <State {...state} key={"state_" + i} />
                 ))}

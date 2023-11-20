@@ -3,12 +3,12 @@ import React from "react";
 
 const Event = ({ event, tags, date, time, tab }) => {
   return (
-    <div className="bg-[#0D1322] rounded-lg flex flex-col gap-4 justify-center p-4 w-full">
+    <div className="bg-white dark:bg-[#0D1322] rounded-lg flex flex-col gap-4 justify-center p-4 w-full">
       <h3 className="2xl:text-2xl text-lg font-bold">{event}</h3>
       <div className="flex gap-[2%]">
         {tags.map((tag, i) => (
           <p
-            className="bg-[#162239] rounded p-[2px] px-4 border-border border 2xl:text-base text-xs"
+            className="bg-gray-200 dark:bg-[#162239] rounded p-[2px] px-4 border-border border 2xl:text-base text-xs"
             key={"event_tag_" + i}
           >
             {tag}

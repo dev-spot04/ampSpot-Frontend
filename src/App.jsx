@@ -68,9 +68,11 @@ const App = () => {
     ALL_LINKS.ConfirmPassword,
   ];
 
+  const darkMode=useSelector(state=>state.user.darkMode)
+
   return (
     <QueryClientProvider client={queryClient}>
-      <div id="" className="relative min-h-[100vh]">
+      <div id="" className={`relative min-h-[100vh] ${darkMode ? 'dark' : 'light'}`}>
         <div className="">
           {loading ? (
             <SplashScreen />
