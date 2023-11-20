@@ -82,8 +82,8 @@ const DashboardHeader = ({ children }) => {
             }}
             PaperProps={{
               sx: {
-                background: "#0D1322",
-                color: "#98B3E1",
+                background: darkMode ? "#0D1322" : "#fff",
+                color: darkMode ? "#fff" : "#0D1322",
                 width: "13rem",
                 borderRadius: "10px",
               },
