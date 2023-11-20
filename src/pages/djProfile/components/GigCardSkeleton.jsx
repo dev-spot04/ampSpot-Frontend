@@ -3,7 +3,7 @@ import React from "react";
 
 const GigCardSkeleton = ({ mention, rating, theme, rate, imgSrc }) => {
   return (
-    <div className="w-full rounded-2xl overflow-hidden 2xl:p-5 p-3 bg-border/20 animate-pulse">
+    <div className="w-full rounded-2xl overflow-hidden 2xl:p-5 p-3 bg-white shadow-lg dark:bg-border/20 animate-pulse">
       <div>
         <div className="aspect-square overflow-hidden rounded-xl bg-blue1/50" />
         <div className="2xl:text-base text-sm flex items-center justify-between text-blue1/50 mt-2">

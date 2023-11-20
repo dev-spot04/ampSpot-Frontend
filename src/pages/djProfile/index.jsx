@@ -34,7 +34,7 @@ const DjProfile = () => {
   const favouriteHandler = () => {};
   const shareHandler = () => {};
   return (
-    <main className="bg-background min-h-screen md:grid md:grid-cols-5 2xl:grid-cols-5 text-white">
+    <main className="bg-white dark:bg-[#0A0F1B] min-h-screen md:grid md:grid-cols-5 2xl:grid-cols-5 text-black dark:text-white">
       <section className="w-full md:block hidden bg-blue2">
         <Drawer />
       </section>
@@ -55,9 +55,10 @@ const DjProfile = () => {
             />
           </label>
         </DashboardHeader>
+
         <section className="lg:grid lg:grid-cols-3 px-4 lg:gap-3">
           <section className="lg:col-span-1 overflow-y-hidden w-full">
-            <div className="bg-blue2 text-lightBlue pb-5 rounded-lg overflow-hidden shadow-md">
+            <div className="bg-white dark:bg-[#0D1322] text-lightBlue pb-5 rounded-lg overflow-hidden shadow-md">
               <div className="2xl:text-base text-sm flex justify-between items-center z-10 relative w-[90%] mx-auto top-3">
                 <button
                   type="button"
@@ -118,7 +119,7 @@ const DjProfile = () => {
                     <p className="2xl:text-sm text-xs">Total Events</p>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-3 justify-between my-6 2xl:text-lg text-sm font-bold 2xl:h-12 h-9 text-white">
+                <div className="grid grid-cols-2 gap-3 justify-between my-6 2xl:text-lg text-sm font-bold 2xl:h-12 h-9">
                   <button
                     type="button"
                     className="bg-blue1/5 rounded-xl"
@@ -136,7 +137,7 @@ const DjProfile = () => {
                 </div>
               </div>
             </div>
-            <div className="bg-blue2 text-lightBlue rounded-lg overflow-hidden shadow-md my-8 2xl:p-6 p-4">
+            <div className="bg-white dark:bg-[#0D1322] dark:text-white text-black  rounded-lg overflow-hidden shadow-md my-8 2xl:p-6 p-4">
               {userProfile.map((item, i) => (
                 <PersonalInfo
                   key={"personal_info-" + i}
@@ -147,21 +148,21 @@ const DjProfile = () => {
               ))}
             </div>
           </section>
-          <section className="col-span-2 text-lightBlue pb-5">
+          <section className="col-span-2  pb-5">
             <div className="min-h-[20vh]">
               <h2 className="2xl:text-lg w-fit text-center">
                 Availability
                 <hr className="w-20 border-2 bg-blue1 border-blue1 my-2" />
               </h2>
 
-              <div className="bg-border/20 rounded-lg my-7">
+              <div className="bg-white dark:bg-border/20 rounded-lg my-7 text- dark:text-white">
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DateCalendar
                     style={{ width: "100%" }}
                     sx={{
-                      ".MuiIconButton-root": { color: "white" },
-                      ".MuiTypography-root": { color: "white", width: "100%" },
-                      ".MuiPickersDay-root": { color: "white", width: "100%" },
+                      ".MuiIconButton-root": { color: "inherit" },
+                      ".MuiTypography-root": { color: "inherit", width: "100%" },
+                      ".MuiPickersDay-root": { color: "inherit", width: "100%" },
                       ".Mui-selected": {
                         borderRadius: "3px",
                         border: "1px solid #2C549D",
@@ -229,7 +230,7 @@ const PersonalInfo = ({ icon, data, more }) => {
             {data}
           </p>
         </div>
-        <p className="text-white font-bold 2xl:text-md text-sm">{more}</p>
+        <p className="font-bold 2xl:text-md text-sm">{more}</p>
       </div>
       <hr className="border border-border/20 2xl:my-3 my-2" />
     </>

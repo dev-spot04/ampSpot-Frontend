@@ -3,7 +3,7 @@ import React from "react";
 
 const GigCard = ({ mention, rating, theme, rate, imgSrc }) => {
   return (
-    <div className="w-full rounded-2xl overflow-hidden 2xl:p-5 p-3 bg-border/20">
+    <div className="w-full rounded-2xl overflow-hidden 2xl:p-5 p-3 bg-white shadow-lg dark:bg-border/20">
       <div>
         <div className="aspect-square overflow-hidden rounded-xl">
           <img src={imgSrc} />
@@ -14,7 +14,7 @@ const GigCard = ({ mention, rating, theme, rate, imgSrc }) => {
             <StarRounded sx={{ fontSize: "170%" }} /> ({rating})
           </div>
         </div>
-        <p className="text-white font-bold 2xl:text-2xl text-lg 2xl:my-3 my-2">
+        <p className=" font-bold 2xl:text-2xl text-lg 2xl:my-3 my-2">
           {theme}
         </p>
         <p className="text-blue1 2xl:text-xl text-sm my-3 font-bold">{rate}</p>

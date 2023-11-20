@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 import { assets } from "../../assets";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, toggleDarkMode } from "../../redux/userSlice";
+import { ALL_LINKS } from "../../constants/navigation-routes";
 
 const DashboardHeader = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -91,7 +92,7 @@ const DashboardHeader = ({ children }) => {
           >
             <MenuItem onClick={closeMenu} className={menuItemClass}>
               <Edit {...navIconProps} />
-              <p>Profile</p>
+              <Link to={'/djprofile'}>Profile</Link>
             </MenuItem>
             <MenuItem onClick={closeMenu} className={menuItemClass}>
               <Settings {...navIconProps} />

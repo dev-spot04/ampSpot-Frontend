@@ -6,6 +6,7 @@ import Event from "./components/Event";
 import RightArea from "./components/RightArea";
 import State from "./components/State";
 import "../../styles/scrollbar.css";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const quick_states = [
@@ -24,6 +25,8 @@ const Dashboard = () => {
   ];
   // prettier-ignore
   const event_list = [ { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Contract Signed", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Past bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, { event: "Event in Dhaka", tags: ["Classic", "Local"], date: "25 Aug 2023", time: "20:00-23:00", tab: "Upcoming Bookings", }, ];
+
+  const user=useSelector(state=>state.user)
   return (
     <main className="bg-[#F2F1F3]  dark:bg-background min-h-screen md:grid md:grid-cols-4 2xl:grid-cols-5 text-black dark:text-white">
       <section className="w-full md:block hidden">
@@ -38,7 +41,7 @@ const Dashboard = () => {
             <div className="rounded-2xl px-7 py-4 bg-[#0052FF] flex flex-col gap-5 text-white">
               <div>
                 <p className="2xl:text-3xl text-xl font-bold">
-                  Welcome Back! MD Rakib
+                  Welcome Back! {user.user?.firstName}
                 </p>
                 <p className="2xl:text-base text-sm">
                   You have completed 54% of your profile
