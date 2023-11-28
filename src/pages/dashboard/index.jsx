@@ -11,7 +11,7 @@ import { useSelector } from "react-redux";
 const Dashboard = () => {
   const quick_states = [
     { type: "dollar", value: 200, title: "Total Balance" },
-    { type: "dollar", value: 2025, title: "Total Earning", trend: "up" },
+    { type: "dollar", value: 999, title: "Total Earning", trend: "up" },
     { type: "count", value: 50, title: "Total Events" },
     { type: "dollar", value: 200, title: "Total Expenses", trend: "down" },
   ];

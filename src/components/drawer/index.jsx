@@ -8,6 +8,7 @@ import {
 } from "@mui/icons-material";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { ALL_LINKS } from "../../constants/navigation-routes";
 
 const Drawer = () => {
   const [activeLink, setActiveLink] = useState("home");
@@ -79,7 +80,7 @@ const Drawer = () => {
             " " +
             defaultLinkClass
           }
-          to="/messages"
+          to={ALL_LINKS.Chat.pageLink}
         >
           <MessageRounded {...navIconProps} />
           <p>Messages</p>

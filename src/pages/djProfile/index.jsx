@@ -17,8 +17,9 @@ import GigCard from "./components/GigCard";
 import GigCardSkeleton from "./components/GigCardSkeleton";
 import { DateCalendar, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-
+import {useSelector} from 'react-redux'
 const DjProfile = () => {
+  const user=useSelector(state=>state.user)
   const userProfile = [
     { icon: <LocationOn />, data: "From", more: "LA, USA" },
     { icon: <PersonRounded />, data: "Member Since", more: "Jan 2023" },
@@ -91,9 +92,9 @@ const DjProfile = () => {
               </div>
               <div className="relative mt-14 text-center px-[4.5%]">
                 <h2 className="2xl:text-3xl text-xl font-bold">
-                  DJ First lady
+                {user.user?.firstName}
                 </h2>
-                <h3 className="2xl:text-lg text-sm my-1">@djfirstlady</h3>
+                {/* <h3 className="2xl:text-lg text-sm my-1">@djfirstlady</h3> */}
                 <div className="flex justify-center my-3">
                   <Rating
                     value={4}
