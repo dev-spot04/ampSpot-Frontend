@@ -79,6 +79,9 @@ const Chat = () => {
           allowProfileEdit={true}
           showSearchIcon={true}
           isReactionEnabled={true}
+          stringSet={{
+            PLACE_HOLDER__NO_CHANNEL: "No Messages",
+          }}
         />
       </div>
     </div>
