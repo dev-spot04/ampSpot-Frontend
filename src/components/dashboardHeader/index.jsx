@@ -164,7 +164,7 @@ const DashboardHeader = ({ children }) => {
                 </Link>
               </MenuItem>
               <MenuItem onClick={closeMenu} className={menuItemClass}>
-                <Link to="/dashboard" className={menuItemClass}>
+                <Link to={ALL_LINKS.Chat.pageLink} className={menuItemClass}>
                   <MessageRounded {...navIconProps} />
                   <p>Messages</p>
                 </Link>
