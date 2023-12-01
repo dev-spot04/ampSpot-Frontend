@@ -10,10 +10,10 @@ import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const quick_states = [
-    { type: "dollar", value: 200, title: "Total Balance" },
-    { type: "dollar", value: 999, title: "Total Earning", trend: "up" },
-    { type: "count", value: 50, title: "Total Events" },
-    { type: "dollar", value: 200, title: "Total Expenses", trend: "down" },
+    { type: "dollar", value: 0, title: "Total Balance" },
+    { type: "dollar", value: 0, title: "Total Earning", trend: "up" },
+    { type: "count", value: 0, title: "Total Events" },
+    { type: "dollar", value: 0, title: "Total Expenses", trend: "down" },
   ];
   const [activeTab, setActiveTab] = useState("Upcoming Bookings");
   const tab_list = [
@@ -101,7 +101,7 @@ const Dashboard = () => {
             </div>
           </section>
           <section className="w-[24%] md:block hidden">
-            <RightArea balance={129389.0} />
+            <RightArea balance={0.0} />
           </section>
         </section>
       </section>
